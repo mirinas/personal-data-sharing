@@ -1,0 +1,30 @@
+\begin{thebibliography}{1}
+
+\bibitem{konstantinidis}
+G.~Konstantinidis, J.~Holt, and A.~Chapman, ``Enabling personal consent in databases,'' {\em Proceedings of the VLDB Endowment}, vol.~15, no.~2, p.~375 – 387, 2021.
+
+\bibitem{dlt}
+T.-T. Kuo, H.-E. Kim, and L.~Ohno-Machado, ``Blockchain distributed ledger technologies for biomedical and health care applications,'' {\em Journal of the American Medical Informatics Association}, vol.~24, no.~6, pp.~1211--1220, 2017.
+
+\bibitem{bitcoin}
+S.~Nakamoto, ``Bitcoin: A peer-to-peer electronic cash system,'' {\em Cryptography Mailing list at https://metzdowd.com}, 03 2009.
+
+\bibitem{permissioned}
+Q.~Xia, E.~Sifah, A.~Smahi, S.~Amofa, and X.~Zhang, ``Bbds: Blockchain-based data sharing for electronic medical records in cloud environments,'' {\em Information (Switzerland)}, vol.~8, no.~2, 2017.
+
+\bibitem{gateways}
+X.~Yue, H.~Wang, D.~Jin, M.~Li, and W.~Jiang, ``Healthcare data gateways: Found healthcare intelligence on blockchain with novel privacy risk control,'' {\em Journal of Medical Systems}, vol.~40, no.~10, 2016.
+
+\bibitem{privacy}
+G.~Zyskind, O.~Nathan, and A.~Pentland, ``Decentralizing privacy: Using blockchain to protect personal data,'' {\em Proceedings - 2015 IEEE Security and Privacy Workshops, SPW 2015}, pp.~180--184, 2015.
+
+\bibitem{ethereum}
+G.~Wood {\em et~al.}, ``Ethereum: A secure decentralised generalised transaction ledger,'' {\em Ethereum project yellow paper}, vol.~151, no.~2014, pp.~1--32, 2014.
+
+\bibitem{devices}
+K.~Griggs, O.~Ossipova, C.~Kohlios, A.~Baccarini, E.~Howson, and T.~Hayajneh, ``Healthcare blockchain system using smart contracts for secure automated remote patient monitoring,'' {\em Journal of Medical Systems}, vol.~42, no.~7, 2018.
+
+\bibitem{fabric}
+E.~Androulaki, A.~Barger, V.~Bortnikov, C.~Cachin, K.~Christidis, A.~De~Caro, D.~Enyeart, C.~Ferris, G.~Laventman, Y.~Manevich, S.~Muralidharan, C.~Murthy, B.~Nguyen, M.~Sethi, G.~Singh, K.~Smith, A.~Sorniotti, C.~Stathakopoulou, M.~Vukoli\'{c}, S.~W. Cocco, and J.~Yellick, ``Hyperledger fabric: A distributed operating system for permissioned blockchains,'' in {\em Proceedings of the Thirteenth EuroSys Conference}, EuroSys '18, (New York, NY, USA), Association for Computing Machinery, 2018.
+
+\end{thebibliography}

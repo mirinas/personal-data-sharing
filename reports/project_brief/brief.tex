@@ -1,0 +1,51 @@
+\documentclass{exsheetSoton}
+
+\module{Part III Project Brief}
+
+\authors{
+    Augustas Mirinas\\
+    am26g21@soton.ac.uk\\
+    \vspace{10pt}
+
+    Supervisor: George Konstantinidis\\
+    g.konstantinidis@soton.ac.uk
+}
+\period{2023-24}
+
+% Name of the paper
+\exTitle{Trustless System for Personal Data Sharing}
+
+
+\usepackage{listings}
+\usepackage{courier}
+\usepackage{color}
+
+\definecolor{light-gray}{gray}{0.95}
+
+\graphicspath{{figures/}} %Setting the graphicspath
+\lstset{
+    basicstyle=\footnotesize\ttfamily,
+    breaklines=true,
+    backgroundcolor=\color{light-gray},
+    language=SQL
+}
+\lstMakeShortInline[language=SQL,basicstyle=\footnotesize\ttfamily]!
+
+
+\begin{document}
+
+
+    \section{Problem}
+        The market for digital user information is growing, as companies use it to make the internet experience more personal to each user. Digital data is also useful to train various machine learning programs, and medical information helps doctors make evidence-based decisions. However, current methods for users to control the use of their data are very limited, most of them being "opt-in/out" choices. This, combined with the fact that data providers are relying on agreements written in natural language when sharing user information, makes the option of sharing user information unappealing.
+
+
+    \section{Goals}
+        The objective of this project is to solve problems related to user information usage, by adding a logic layer before accessing the data. The logic layer, in a form of a smart contract hosted in a distributed ledger, would store user's consent constraints on their private data. The smart contract would accept queries of the data, apply consent constraints and return compliant results, without giving away protected user information. The distributed ledger would ensure traceable usage of data and immutable global consent constraints.
+
+
+    \section{Scope}
+        The distributed ledger storing consent constraints and information access logic will be implemented using Hyperledger Fabric. Companies interacting with the user data would form a private network, where consent constraints would be used for every query done by a member of the network. Smart contracts would implement constraints and re-write queries as described in a paper by G. Konstantinidis, J. Holt, and A. Chapman. "Enabling Personal Consent in Databases". Interface for data providers to register a user information database and user consent constraints is also in the scope of this project.
+    
+            
+                
+\end{document}
