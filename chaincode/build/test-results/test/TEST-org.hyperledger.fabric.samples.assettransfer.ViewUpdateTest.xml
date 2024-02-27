@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.hyperledger.fabric.samples.assettransfer.ViewUpdateTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-02-27T22:42:20" hostname="LAPTOP-0K1RFNEG" time="1.169">
+  <properties/>
+  <testcase name="testUpdateView()" classname="org.hyperledger.fabric.samples.assettransfer.ViewUpdateTest" time="1.169"/>
+  <system-out><![CDATA[null
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
