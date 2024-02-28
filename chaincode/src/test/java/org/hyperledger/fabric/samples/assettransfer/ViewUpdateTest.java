@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 public final class ViewUpdateTest {
 
     private static final String label = "users";
-    private static final String hash = "79879ab7897h978fdf987a9";
+    private static final String hash = "hash of the data";
 
     private final Genson genson = new Genson();
 
