@@ -15,7 +15,7 @@ import org.hyperledger.fabric.shim.ledger.KeyValue;
 import org.hyperledger.fabric.shim.ledger.QueryResultsIterator;
 
 @Contract(
-    name = "private",
+    name = "basic",
     info = @Info(
         title = "View update",
         description = "Update view to privately share data",
