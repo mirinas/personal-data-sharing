@@ -1,0 +1,3 @@
+[submodule "private-data-chaincode"]
+	path = private-data-chaincode
+	url = https://github.com/mirinas/private-data-chaincode.git
