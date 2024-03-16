@@ -1,0 +1,20 @@
+[
+  {
+    "name": "AllOrgs",
+    "policy": "OR('Org1MSP.member','Org2MSP.member')",
+    "requiredPeerCount": 1,
+    "maxPeerCount": 2,
+    "blockToLive": 0,
+    "memberOnlyRead": true,
+    "memberOnlyWrite": true
+  },
+  {
+    "name": "Org1",
+    "policy": "OR('Org1MSP.member')",
+    "requiredPeerCount": 1,
+    "maxPeerCount": 2,
+    "blockToLive": 0,
+    "memberOnlyRead": true,
+    "memberOnlyWrite": true
+  }
+]

@@ -1,0 +1,8 @@
+PeerOrgs:
+  - Name: Org1
+    Domain: org1.co.uk
+    Specs:
+    Template:
+      Count: 1
+    Users:
+      Count: 1
