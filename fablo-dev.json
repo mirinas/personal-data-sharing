@@ -25,7 +25,7 @@
       "organization": {
         "name": "Org1",
         "mspName": "Org1MSP",
-        "domain": "org1.co.uk"
+        "domain": "org1.co"
       },
       "ca": {
         "prefix": "ca"
@@ -34,16 +34,13 @@
         "prefix": "peer",
         "instances": 1,
         "db": "LevelDb"
-      },
-      "tools": {
-        "explorer": true
       }
     },
     {
       "organization": {
         "name": "Org2",
         "mspName": "Org2MSP",
-        "domain": "org2.ac.uk"
+        "domain": "org2.ac"
       },
       "ca": {
         "prefix": "ca"
@@ -52,9 +49,6 @@
         "prefix": "peer",
         "instances": 1,
         "db": "LevelDb"
-      },
-      "tools": {
-        "explorer": true
       }
     }
   ],
@@ -87,14 +81,14 @@
       "directory": "private-data-chaincode",
       "privateData": [
         {
-          "name": "AllOrgs",
+          "name": "CollectionA",
           "orgNames": [
             "Org1",
             "Org2"
           ]
         },
         {
-          "name": "Org1",
+          "name": "CollectionB",
           "orgNames": [
             "Org1"
           ]

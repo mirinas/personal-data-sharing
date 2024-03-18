@@ -97,52 +97,6 @@ Organizations:
           - Host: peer0.org2.ac
             Port: 7061
 
-    - &Org3
-      Name: Org3MSP
-      ID: Org3MSP
-      MSPDir: crypto-config/peerOrganizations/org3.gov/msp
-
-      Policies:
-          Readers:
-              Type: Signature
-              Rule: "OR('Org3MSP.member')"
-          Writers:
-              Type: Signature
-              Rule: "OR('Org3MSP.member')"
-          Admins:
-              Type: Signature
-              Rule: "OR('Org3MSP.admin')"
-          Endorsement:
-              Type: Signature
-              Rule: "OR('Org3MSP.member')"
-
-      AnchorPeers:
-          - Host: peer0.org3.gov
-            Port: 7081
-
-    - &Org4
-      Name: Org4MSP
-      ID: Org4MSP
-      MSPDir: crypto-config/peerOrganizations/owners.org/msp
-
-      Policies:
-          Readers:
-              Type: Signature
-              Rule: "OR('Org4MSP.member')"
-          Writers:
-              Type: Signature
-              Rule: "OR('Org4MSP.member')"
-          Admins:
-              Type: Signature
-              Rule: "OR('Org4MSP.admin')"
-          Endorsement:
-              Type: Signature
-              Rule: "OR('Org4MSP.member')"
-
-      AnchorPeers:
-          - Host: peer0.owners.org
-            Port: 7101
-
 ################################################################################
 #   SECTION: Application
 ################################################################################
@@ -222,8 +176,6 @@ Profiles:
                     - *Orderer
                     - *Org1
                     - *Org2
-                    - *Org3
-                    - *Org4
 
     # Profile used to create channeltx for ch1 #
     Ch1:
@@ -240,12 +192,8 @@ Profiles:
                 Organizations:
                     - *Org1
                     - *Org2
-                    - *Org3
-                    - *Org4
         Application:
             <<: *ApplicationDefaults
             Organizations:
                 - *Org1
                 - *Org2
-                - *Org3
-                - *Org4

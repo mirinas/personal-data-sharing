@@ -5,8 +5,6 @@ __getOrdererAndPeerNodes() {
       orderer0.authorities.orderer.org
       peer0.org1.co
       peer0.org2.ac
-      peer0.org3.gov
-      peer0.owners.org
   "
 }
 
@@ -15,8 +13,6 @@ __getCASQLiteNodes() {
       ca.orderer.org
       ca.org1.co
       ca.org2.ac
-      ca.org3.gov
-      ca.owners.org
   "
 }
 

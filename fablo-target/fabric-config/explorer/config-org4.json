@@ -1,9 +1,0 @@
-{
-  "network-configs": {
-    "network-org4": {
-      "name": "Network of Org4",
-      "profile": "/opt/explorer/app/platform/fabric/connection-profile/connection-profile-org4.json"
-    }
-  },
-  "license": "Apache-2.0"
-}

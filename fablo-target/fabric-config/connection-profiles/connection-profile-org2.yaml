@@ -9,45 +9,16 @@ organizations:
     peers:
       - peer0.org1.co
       - peer0.org2.ac
-      - peer0.org3.gov
-      - peer0.owners.org
     certificateAuthorities:
       - ca.org2.ac
 peers:
   peer0.org1.co:
-    url: grpcs://localhost:7041
-    tlsCACerts:
-      path: >-
-        /mnt/c/github/part3/personal-data-sharing/fablo-target/fabric-config/crypto-config/peerOrganizations/org1.co/peers/peer0.org1.co/tls/ca.crt
-    grpcOptions:
-      ssl-target-name-override: peer0.org1.co
+    url: grpc://localhost:7041
   peer0.org2.ac:
-    url: grpcs://localhost:7061
-    tlsCACerts:
-      path: >-
-        /mnt/c/github/part3/personal-data-sharing/fablo-target/fabric-config/crypto-config/peerOrganizations/org2.ac/peers/peer0.org2.ac/tls/ca.crt
-    grpcOptions:
-      ssl-target-name-override: peer0.org2.ac
-  peer0.org3.gov:
-    url: grpcs://localhost:7081
-    tlsCACerts:
-      path: >-
-        /mnt/c/github/part3/personal-data-sharing/fablo-target/fabric-config/crypto-config/peerOrganizations/org3.gov/peers/peer0.org3.gov/tls/ca.crt
-    grpcOptions:
-      ssl-target-name-override: peer0.org3.gov
-  peer0.owners.org:
-    url: grpcs://localhost:7101
-    tlsCACerts:
-      path: >-
-        /mnt/c/github/part3/personal-data-sharing/fablo-target/fabric-config/crypto-config/peerOrganizations/owners.org/peers/peer0.owners.org/tls/ca.crt
-    grpcOptions:
-      ssl-target-name-override: peer0.owners.org
+    url: grpc://localhost:7061
 certificateAuthorities:
   ca.org2.ac:
     url: http://localhost:7060
     caName: ca.org2.ac
-    tlsCACerts:
-      path: >-
-        /mnt/c/github/part3/personal-data-sharing/fablo-target/fabric-config/crypto-config/peerOrganizations/org2.ac/ca/ca.org2.ac-cert.pem
     httpOptions:
       verify: false
