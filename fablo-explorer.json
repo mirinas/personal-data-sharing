@@ -2,9 +2,10 @@
   "$schema": "https://github.com/hyperledger-labs/fablo/releases/download/1.2.1-unstable.0/schema.json",
   "global": {
     "fabricVersion": "2.5.0",
-    "tls": false,
-    "peerDevMode": true,
-    "engine": "docker"
+    "tls": true,
+    "tools": {
+      "explorer": true
+    }
   },
   "orgs": [
     {
@@ -25,7 +26,7 @@
       "organization": {
         "name": "Org1",
         "mspName": "Org1MSP",
-        "domain": "org1.co.uk"
+        "domain": "org1.co"
       },
       "ca": {
         "prefix": "ca"
@@ -40,7 +41,37 @@
       "organization": {
         "name": "Org2",
         "mspName": "Org2MSP",
-        "domain": "org2.ac.uk"
+        "domain": "org2.ac"
+      },
+      "ca": {
+        "prefix": "ca"
+      },
+      "peer": {
+        "prefix": "peer",
+        "instances": 1,
+        "db": "LevelDb"
+      }
+    },
+    {
+      "organization": {
+        "name": "Org3",
+        "mspName": "Org3MSP",
+        "domain": "org3.gov"
+      },
+      "ca": {
+        "prefix": "ca"
+      },
+      "peer": {
+        "prefix": "peer",
+        "instances": 1,
+        "db": "LevelDb"
+      },
+    },
+    {
+      "organization": {
+        "name": "Org4",
+        "mspName": "Org4MSP",
+        "domain": "owners.org"
       },
       "ca": {
         "prefix": "ca"
@@ -67,6 +98,18 @@
           "peers": [
             "peer0"
           ]
+        },
+        {
+          "name": "Org3",
+          "peers": [
+            "peer0"
+          ]
+        },
+        {
+          "name": "Org4",
+          "peers": [
+            "peer0"
+          ]
         }
       ]
     }
@@ -77,20 +120,29 @@
       "version": "1.0",
       "lang": "java",
       "channel": "ch1",
-      "endorsement": "OR('Org1MSP.member', 'Org2MSP.member')",
       "directory": "private-data-chaincode",
+      "endorsement": "OR('Org1MSP.member', 'Org2MSP.member', 'Org3MSP.member', 'Org4MSP.member')",
       "privateData": [
         {
-          "name": "AllOrgs",
+          "name": "CollectionA",
           "orgNames": [
             "Org1",
-            "Org2"
+            "Org3"
           ]
         },
         {
-          "name": "Org1",
+          "name": "CollectionB",
           "orgNames": [
-            "Org1"
+            "Org1",
+            "Org2",
+            "Org3"
+          ]
+        },
+        {
+          "name": "CollectionC",
+          "orgNames": [
+            "Org2",
+            "Org3"
           ]
         }
       ]

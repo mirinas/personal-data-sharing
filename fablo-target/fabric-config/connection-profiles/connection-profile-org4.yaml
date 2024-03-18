@@ -1,18 +1,18 @@
-name: fablo-test-network-org2
-description: Connection profile for Org2 in Fablo network
+name: fablo-test-network-org4
+description: Connection profile for Org4 in Fablo network
 version: 1.0.0
 client:
-  organization: Org2
+  organization: Org4
 organizations:
-  Org2:
-    mspid: Org2MSP
+  Org4:
+    mspid: Org4MSP
     peers:
       - peer0.org1.co
       - peer0.org2.ac
       - peer0.org3.gov
       - peer0.owners.org
     certificateAuthorities:
-      - ca.org2.ac
+      - ca.owners.org
 peers:
   peer0.org1.co:
     url: grpcs://localhost:7041
@@ -43,11 +43,11 @@ peers:
     grpcOptions:
       ssl-target-name-override: peer0.owners.org
 certificateAuthorities:
-  ca.org2.ac:
-    url: http://localhost:7060
-    caName: ca.org2.ac
+  ca.owners.org:
+    url: http://localhost:7100
+    caName: ca.owners.org
     tlsCACerts:
       path: >-
-        /mnt/c/github/part3/personal-data-sharing/fablo-target/fabric-config/crypto-config/peerOrganizations/org2.ac/ca/ca.org2.ac-cert.pem
+        /mnt/c/github/part3/personal-data-sharing/fablo-target/fabric-config/crypto-config/peerOrganizations/owners.org/ca/ca.owners.org-cert.pem
     httpOptions:
       verify: false

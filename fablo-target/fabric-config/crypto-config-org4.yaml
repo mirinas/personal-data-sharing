@@ -1,6 +1,6 @@
 PeerOrgs:
-  - Name: Org1
-    Domain: org1.co
+  - Name: Org4
+    Domain: owners.org
     Specs:
     Template:
       Count: 1

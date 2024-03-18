@@ -1,18 +1,27 @@
 [
   {
-    "name": "AllOrgs",
-    "policy": "OR('Org1MSP.member','Org2MSP.member')",
+    "name": "CollectionA",
+    "policy": "OR('Org1MSP.member','Org3MSP.member')",
     "requiredPeerCount": 1,
-    "maxPeerCount": 2,
+    "maxPeerCount": 4,
     "blockToLive": 0,
     "memberOnlyRead": true,
     "memberOnlyWrite": true
   },
   {
-    "name": "Org1",
-    "policy": "OR('Org1MSP.member')",
+    "name": "CollectionB",
+    "policy": "OR('Org1MSP.member','Org2MSP.member','Org3MSP.member')",
     "requiredPeerCount": 1,
-    "maxPeerCount": 2,
+    "maxPeerCount": 4,
+    "blockToLive": 0,
+    "memberOnlyRead": true,
+    "memberOnlyWrite": true
+  },
+  {
+    "name": "CollectionC",
+    "policy": "OR('Org2MSP.member','Org3MSP.member')",
+    "requiredPeerCount": 1,
+    "maxPeerCount": 4,
     "blockToLive": 0,
     "memberOnlyRead": true,
     "memberOnlyWrite": true
