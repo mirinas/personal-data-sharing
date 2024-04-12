@@ -10,7 +10,8 @@
       "mspid": "Org2MSP",
       "peers": [
         "peer0.org1.co",
-        "peer0.org2.ac"
+        "peer0.org2.ac",
+        "peer0.owners.org"
       ],
       "certificateAuthorities": [
         "ca.org2.ac"
@@ -23,6 +24,9 @@
     },
     "peer0.org2.ac": {
       "url": "grpc://localhost:7061"
+    },
+    "peer0.owners.org": {
+      "url": "grpc://localhost:7081"
     }
   },
   "certificateAuthorities": {

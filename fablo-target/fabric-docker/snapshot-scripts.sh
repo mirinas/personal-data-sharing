@@ -2,9 +2,10 @@
 
 __getOrdererAndPeerNodes() {
   echo "
-      orderer0.authorities.orderer.org
+      orderer0.auth.orderer.org
       peer0.org1.co
       peer0.org2.ac
+      peer0.owners.org
   "
 }
 
@@ -13,6 +14,7 @@ __getCASQLiteNodes() {
       ca.orderer.org
       ca.org1.co
       ca.org2.ac
+      ca.owners.org
   "
 }
 

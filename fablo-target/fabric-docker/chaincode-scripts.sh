@@ -15,6 +15,12 @@ chaincodeList() {
 
     peerChaincodeList "cli.org2.ac" "peer0.org2.ac:7061" "$2" # $2 is channel name
 
+  elif
+    [ "$1" = "peer0.owners.org" ]
+  then
+
+    peerChaincodeList "cli.owners.org" "peer0.owners.org:7081" "$2" # $2 is channel name
+
   else
 
     echo "Fail to call listChaincodes. No peer or channel found. Provided peer: $1, channel: $2"
@@ -46,6 +52,11 @@ chaincodeInvoke() {
   if [[ "$1" == *"peer0.org2.ac"* ]]; then
     cli="cli.org2.ac"
     peer_addresses="$peer_addresses,peer0.org2.ac:7061"
+
+  fi
+  if [[ "$1" == *"peer0.owners.org"* ]]; then
+    cli="cli.owners.org"
+    peer_addresses="$peer_addresses,peer0.owners.org:7081"
 
   fi
   if [ -z "$peer_addresses" ]; then

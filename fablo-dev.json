@@ -4,7 +4,10 @@
     "fabricVersion": "2.5.0",
     "tls": false,
     "peerDevMode": true,
-    "engine": "docker"
+    "engine": "docker",
+    "tools": {
+      "explorer": true
+    }
   },
   "orgs": [
     {
@@ -14,7 +17,7 @@
       },
       "orderers": [
         {
-          "groupName": "authorities",
+	  "groupName": "auth",
           "prefix": "orderer",
           "type": "solo",
           "instances": 1
@@ -50,6 +53,21 @@
         "instances": 1,
         "db": "LevelDb"
       }
+    },
+    {
+      "organization": {
+        "name": "Owners",
+        "mspName": "OwnersMSP",
+        "domain": "owners.org"
+      },
+      "ca": {
+        "prefix": "ca"
+      },
+      "peer": {
+        "prefix": "peer",
+        "instances": 1,
+        "db": "LevelDb"
+      }
     }
   ],
   "channels": [
@@ -67,6 +85,12 @@
           "peers": [
             "peer0"
           ]
+        },
+        {
+          "name": "Owners",
+          "peers": [
+            "peer0"
+          ]
         }
       ]
     }
@@ -77,8 +101,8 @@
       "version": "1.0",
       "lang": "java",
       "channel": "ch1",
-      "endorsement": "OR('Org1MSP.member', 'Org2MSP.member')",
       "directory": "private-data-chaincode",
+      "endorsement": "OR('Org1MSP.member', 'Org2MSP.member')",
       "privateData": [
         {
           "name": "CollectionA",
@@ -90,7 +114,8 @@
         {
           "name": "CollectionB",
           "orgNames": [
-            "Org1"
+            "Org1",
+	    "Owners"
           ]
         }
       ]

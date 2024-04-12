@@ -1,17 +1,17 @@
-name: fablo-test-network-orderer
-description: Connection profile for Orderer in Fablo network
+name: fablo-test-network-owners
+description: Connection profile for Owners in Fablo network
 version: 1.0.0
 client:
-  organization: Orderer
+  organization: Owners
 organizations:
-  Orderer:
-    mspid: OrdererMSP
+  Owners:
+    mspid: OwnersMSP
     peers:
       - peer0.org1.co
       - peer0.org2.ac
       - peer0.owners.org
     certificateAuthorities:
-      - ca.orderer.org
+      - ca.owners.org
 peers:
   peer0.org1.co:
     url: grpc://localhost:7041
@@ -20,8 +20,8 @@ peers:
   peer0.owners.org:
     url: grpc://localhost:7081
 certificateAuthorities:
-  ca.orderer.org:
-    url: http://localhost:7020
-    caName: ca.orderer.org
+  ca.owners.org:
+    url: http://localhost:7080
+    caName: ca.owners.org
     httpOptions:
       verify: false

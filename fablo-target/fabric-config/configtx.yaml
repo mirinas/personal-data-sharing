@@ -97,6 +97,29 @@ Organizations:
           - Host: peer0.org2.ac
             Port: 7061
 
+    - &Owners
+      Name: OwnersMSP
+      ID: OwnersMSP
+      MSPDir: crypto-config/peerOrganizations/owners.org/msp
+
+      Policies:
+          Readers:
+              Type: Signature
+              Rule: "OR('OwnersMSP.member')"
+          Writers:
+              Type: Signature
+              Rule: "OR('OwnersMSP.member')"
+          Admins:
+              Type: Signature
+              Rule: "OR('OwnersMSP.admin')"
+          Endorsement:
+              Type: Signature
+              Rule: "OR('OwnersMSP.member')"
+
+      AnchorPeers:
+          - Host: peer0.owners.org
+            Port: 7081
+
 ################################################################################
 #   SECTION: Application
 ################################################################################
@@ -124,10 +147,10 @@ Application: &ApplicationDefaults
 ################################################################################
 #   SECTION: Orderer
 ################################################################################
-Orderer: &AuthoritiesDefaults
+Orderer: &AuthDefaults
     OrdererType: solo
     Addresses:
-        - orderer0.authorities.orderer.org:7030
+        - orderer0.auth.orderer.org:7030
     BatchTimeout: 2s
     BatchSize:
         MaxMessageCount: 10
@@ -161,11 +184,11 @@ Orderer: &AuthoritiesDefaults
 # https://github:com/hyperledger/fabric/blob/master/sampleconfig/configtx.yaml
 
 Profiles:
-    # Profile used to create Genesis block for group authorities #
-    AuthoritiesGenesis:
+    # Profile used to create Genesis block for group auth #
+    AuthGenesis:
         <<: *ChannelDefaults
         Orderer:
-            <<: *AuthoritiesDefaults
+            <<: *AuthDefaults
             Organizations:
                 - *Orderer
             Capabilities:
@@ -176,12 +199,13 @@ Profiles:
                     - *Orderer
                     - *Org1
                     - *Org2
+                    - *Owners
 
     # Profile used to create channeltx for ch1 #
     Ch1:
         <<: *ChannelDefaults
         Orderer:
-            <<: *AuthoritiesDefaults
+            <<: *AuthDefaults
             Organizations:
                 - *Orderer
             Capabilities:
@@ -192,8 +216,10 @@ Profiles:
                 Organizations:
                     - *Org1
                     - *Org2
+                    - *Owners
         Application:
             <<: *ApplicationDefaults
             Organizations:
                 - *Org1
                 - *Org2
+                - *Owners
