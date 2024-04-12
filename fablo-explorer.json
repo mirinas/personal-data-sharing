@@ -15,9 +15,8 @@
       },
       "orderers": [
         {
-          "groupName": "authorities",
           "prefix": "orderer",
-          "type": "solo",
+          "type": "raft",
           "instances": 1
         }
       ]
@@ -69,8 +68,8 @@
     },
     {
       "organization": {
-        "name": "Org4",
-        "mspName": "Org4MSP",
+        "name": "Owners",
+        "mspName": "OwnersMSP",
         "domain": "owners.org"
       },
       "ca": {
@@ -106,7 +105,7 @@
           ]
         },
         {
-          "name": "Org4",
+          "name": "Owners",
           "peers": [
             "peer0"
           ]
@@ -121,7 +120,7 @@
       "lang": "java",
       "channel": "ch1",
       "directory": "private-data-chaincode",
-      "endorsement": "OR('Org1MSP.member', 'Org2MSP.member', 'Org3MSP.member', 'Org4MSP.member')",
+      "endorsement": "OR('Org1MSP.member', 'Org2MSP.member', 'Org3MSP.member', 'OwnersMSP.member')",
       "privateData": [
         {
           "name": "CollectionA",

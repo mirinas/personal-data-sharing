@@ -120,24 +120,24 @@ Organizations:
           - Host: peer0.org3.gov
             Port: 7081
 
-    - &Org4
-      Name: Org4MSP
-      ID: Org4MSP
+    - &Owners
+      Name: OwnersMSP
+      ID: OwnersMSP
       MSPDir: crypto-config/peerOrganizations/owners.org/msp
 
       Policies:
           Readers:
               Type: Signature
-              Rule: "OR('Org4MSP.member')"
+              Rule: "OR('OwnersMSP.member')"
           Writers:
               Type: Signature
-              Rule: "OR('Org4MSP.member')"
+              Rule: "OR('OwnersMSP.member')"
           Admins:
               Type: Signature
-              Rule: "OR('Org4MSP.admin')"
+              Rule: "OR('OwnersMSP.admin')"
           Endorsement:
               Type: Signature
-              Rule: "OR('Org4MSP.member')"
+              Rule: "OR('OwnersMSP.member')"
 
       AnchorPeers:
           - Host: peer0.owners.org
@@ -223,7 +223,7 @@ Profiles:
                     - *Org1
                     - *Org2
                     - *Org3
-                    - *Org4
+                    - *Owners
 
     # Profile used to create channeltx for ch1 #
     Ch1:
@@ -241,11 +241,11 @@ Profiles:
                     - *Org1
                     - *Org2
                     - *Org3
-                    - *Org4
+                    - *Owners
         Application:
             <<: *ApplicationDefaults
             Organizations:
                 - *Org1
                 - *Org2
                 - *Org3
-                - *Org4
+                - *Owners

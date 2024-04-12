@@ -431,7 +431,7 @@ services:
     ports:
       - 7100:7054
     working_dir: /etc/hyperledger/fabric-ca-server
-    command: sh -c 'fabric-ca-server start -b ${ORG4_CA_ADMIN_NAME}:${ORG4_CA_ADMIN_PASSWORD} -d'
+    command: sh -c 'fabric-ca-server start -b ${OWNERS_CA_ADMIN_NAME}:${OWNERS_CA_ADMIN_PASSWORD} -d'
     volumes:
       - ../fabric-config/crypto-config/peerOrganizations/owners.org/ca/:/etc/hyperledger/fabric-ca-server/crypto
       - ../fabric-config/fabric-ca-server-config/owners.org/fabric-ca-server-config.yaml:/etc/hyperledger/fabric-ca-server/fabric-ca-server-config.yaml
@@ -449,7 +449,7 @@ services:
       - CORE_PEER_ID=cli.owners.org
       - CORE_CHAINCODE_KEEPALIVE=10
       #
-      - CORE_PEER_LOCALMSPID=Org4MSP
+      - CORE_PEER_LOCALMSPID=OwnersMSP
       - CORE_PEER_MSPCONFIGPATH=/var/hyperledger/cli/crypto/users/Admin@owners.org/msp
       - CORE_PEER_ADDRESS=peer0.owners.org:7101
       # enabled TLS
@@ -480,7 +480,7 @@ services:
     container_name: peer0.owners.org
     image: hyperledger/fabric-peer:${FABRIC_VERSION}
     environment:
-      - CORE_PEER_LOCALMSPID=Org4MSP
+      - CORE_PEER_LOCALMSPID=OwnersMSP
       - CORE_PEER_ID=peer0.owners.org
       - CORE_PEER_ADDRESS=peer0.owners.org:7101
       - CORE_PEER_LISTENADDRESS=peer0.owners.org:7101

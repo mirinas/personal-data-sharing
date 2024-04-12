@@ -1,0 +1,21 @@
+\begin{thebibliography}{1}
+
+\bibitem{konstantinidis}
+G.~Konstantinidis, J.~Holt, and A.~Chapman, ``Enabling personal consent in databases,'' {\em Proceedings of the VLDB Endowment}, vol.~15, no.~2, p.~375 – 387, 2021.
+
+\bibitem{bitcoin}
+S.~Nakamoto, ``Bitcoin: A peer-to-peer electronic cash system,'' {\em Cryptography Mailing list at https://metzdowd.com}, 03 2009.
+
+\bibitem{ethereum}
+G.~Wood {\em et~al.}, ``Ethereum: A secure decentralised generalised transaction ledger,'' {\em Ethereum project yellow paper}, vol.~151, no.~2014, pp.~1--32, 2014.
+
+\bibitem{fabric}
+E.~Androulaki, A.~Barger, V.~Bortnikov, C.~Cachin, K.~Christidis, A.~De~Caro, D.~Enyeart, C.~Ferris, G.~Laventman, Y.~Manevich, S.~Muralidharan, C.~Murthy, B.~Nguyen, M.~Sethi, G.~Singh, K.~Smith, A.~Sorniotti, C.~Stathakopoulou, M.~Vukoli\'{c}, S.~W. Cocco, and J.~Yellick, ``Hyperledger fabric: A distributed operating system for permissioned blockchains,'' in {\em Proceedings of the Thirteenth EuroSys Conference}, EuroSys '18, (New York, NY, USA), Association for Computing Machinery, 2018.
+
+\bibitem{fablo}
+J.~Dzikowski, ``Fablo.'' \url{https://github.com/hyperledger-labs/fablo}, 2024.
+
+\bibitem{explorer}
+N.~Frunza, ``Blockchain explorer.'' \url{https://github.com/hyperledger-labs/blockchain-explorer}, 2024.
+
+\end{thebibliography}

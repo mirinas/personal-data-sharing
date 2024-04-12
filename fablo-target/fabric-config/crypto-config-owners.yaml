@@ -1,5 +1,5 @@
 PeerOrgs:
-  - Name: Org4
+  - Name: Owners
     Domain: owners.org
     Specs:
     Template:

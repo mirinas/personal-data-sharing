@@ -1,11 +1,11 @@
-name: fablo-test-network-org4
-description: Connection profile for Org4 in Fablo network
+name: fablo-test-network-owners
+description: Connection profile for Owners in Fablo network
 version: 1.0.0
 client:
-  organization: Org4
+  organization: Owners
 organizations:
-  Org4:
-    mspid: Org4MSP
+  Owners:
+    mspid: OwnersMSP
     peers:
       - peer0.org1.co
       - peer0.org2.ac
