@@ -120,6 +120,22 @@ services:
     networks:
       - basic
 
+  fablo-rest.org1.co:
+    container_name: fablo-rest.org1.co
+    image: softwaremill/fablo-rest:${FABLO_REST_VERSION}
+    environment:
+      - PORT=8000
+      - MSP_ID=Org1MSP
+      - FABRIC_CA_URL=http://ca.org1.co:7054
+      - FABRIC_CA_NAME=ca.org1.co
+      - AS_LOCALHOST=false
+      - DISCOVERY_URLS=grpc://peer0.org1.co:7041,grpc://peer0.org2.ac:7061,grpc://peer0.owners.org:7081
+      - HFC_LOGGING={"error":"console","warn":"console","info":"console"}
+    ports:
+      - 8801:8000
+    networks:
+      - basic
+
   peer0.org1.co:
     container_name: peer0.org1.co
     image: hyperledger/fabric-peer:${FABRIC_VERSION}
@@ -211,6 +227,22 @@ services:
     networks:
       - basic
 
+  fablo-rest.org2.ac:
+    container_name: fablo-rest.org2.ac
+    image: softwaremill/fablo-rest:${FABLO_REST_VERSION}
+    environment:
+      - PORT=8000
+      - MSP_ID=Org2MSP
+      - FABRIC_CA_URL=http://ca.org2.ac:7054
+      - FABRIC_CA_NAME=ca.org2.ac
+      - AS_LOCALHOST=false
+      - DISCOVERY_URLS=grpc://peer0.org1.co:7041,grpc://peer0.org2.ac:7061,grpc://peer0.owners.org:7081
+      - HFC_LOGGING={"error":"console","warn":"console","info":"console"}
+    ports:
+      - 8802:8000
+    networks:
+      - basic
+
   peer0.org2.ac:
     container_name: peer0.org2.ac
     image: hyperledger/fabric-peer:${FABRIC_VERSION}
@@ -299,6 +331,22 @@ services:
       - ../fabric-config/chaincode-packages:/var/hyperledger/cli/chaincode-packages/
       - "$CHAINCODES_BASE_DIR/private-data-chaincode/:/var/hyperledger/cli/private-data/"
       - "../fabric-config/collections/private-data.json:/var/hyperledger/cli/collections/private-data.json"
+    networks:
+      - basic
+
+  fablo-rest.owners.org:
+    container_name: fablo-rest.owners.org
+    image: softwaremill/fablo-rest:${FABLO_REST_VERSION}
+    environment:
+      - PORT=8000
+      - MSP_ID=OwnersMSP
+      - FABRIC_CA_URL=http://ca.owners.org:7054
+      - FABRIC_CA_NAME=ca.owners.org
+      - AS_LOCALHOST=false
+      - DISCOVERY_URLS=grpc://peer0.org1.co:7041,grpc://peer0.org2.ac:7061,grpc://peer0.owners.org:7081
+      - HFC_LOGGING={"error":"console","warn":"console","info":"console"}
+    ports:
+      - 8803:8000
     networks:
       - basic
 

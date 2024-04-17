@@ -46,13 +46,13 @@ installChannels() {
 installChaincodes() {
   if [ -n "$(ls "$CHAINCODES_BASE_DIR/private-data-chaincode")" ]; then
     printHeadline "Approving 'private-data' for Org1 (dev mode)" "U1F60E"
-    chaincodeApprove "cli.org1.co" "peer0.org1.co:7041" "ch1" "private-data" "1.0" "orderer0.auth.orderer.org:7030" "OR('Org1MSP.member', 'Org2MSP.member')" "false" "" "collections/private-data.json"
+    chaincodeApprove "cli.org1.co" "peer0.org1.co:7041" "ch1" "private-data" "1.0" "orderer0.auth.orderer.org:7030" "AND('OwnersMSP.member', OutOf(1, 'Org1MSP.member', 'Org2MSP.member'))" "false" "" "collections/private-data.json"
     printHeadline "Approving 'private-data' for Org2 (dev mode)" "U1F60E"
-    chaincodeApprove "cli.org2.ac" "peer0.org2.ac:7061" "ch1" "private-data" "1.0" "orderer0.auth.orderer.org:7030" "OR('Org1MSP.member', 'Org2MSP.member')" "false" "" "collections/private-data.json"
+    chaincodeApprove "cli.org2.ac" "peer0.org2.ac:7061" "ch1" "private-data" "1.0" "orderer0.auth.orderer.org:7030" "AND('OwnersMSP.member', OutOf(1, 'Org1MSP.member', 'Org2MSP.member'))" "false" "" "collections/private-data.json"
     printHeadline "Approving 'private-data' for Owners (dev mode)" "U1F60E"
-    chaincodeApprove "cli.owners.org" "peer0.owners.org:7081" "ch1" "private-data" "1.0" "orderer0.auth.orderer.org:7030" "OR('Org1MSP.member', 'Org2MSP.member')" "false" "" "collections/private-data.json"
+    chaincodeApprove "cli.owners.org" "peer0.owners.org:7081" "ch1" "private-data" "1.0" "orderer0.auth.orderer.org:7030" "AND('OwnersMSP.member', OutOf(1, 'Org1MSP.member', 'Org2MSP.member'))" "false" "" "collections/private-data.json"
     printItalics "Committing chaincode 'private-data' on channel 'ch1' as 'Org1' (dev mode)" "U1F618"
-    chaincodeCommit "cli.org1.co" "peer0.org1.co:7041" "ch1" "private-data" "1.0" "orderer0.auth.orderer.org:7030" "OR('Org1MSP.member', 'Org2MSP.member')" "false" "" "peer0.org1.co:7041,peer0.org2.ac:7061,peer0.owners.org:7081" "" "collections/private-data.json"
+    chaincodeCommit "cli.org1.co" "peer0.org1.co:7041" "ch1" "private-data" "1.0" "orderer0.auth.orderer.org:7030" "AND('OwnersMSP.member', OutOf(1, 'Org1MSP.member', 'Org2MSP.member'))" "false" "" "peer0.org1.co:7041,peer0.org2.ac:7061,peer0.owners.org:7081" "" "collections/private-data.json"
   else
     echo "Warning! Skipping chaincode 'private-data' installation. Chaincode directory is empty."
     echo "Looked in dir: '$CHAINCODES_BASE_DIR/private-data-chaincode'"
@@ -79,15 +79,15 @@ installChaincode() {
       chaincodeBuild "private-data" "java" "$CHAINCODES_BASE_DIR/private-data-chaincode" "16"
       chaincodePackage "cli.org1.co" "peer0.org1.co:7041" "private-data" "$version" "java" printHeadline "Installing 'private-data' for Org1" "U1F60E"
       chaincodeInstall "cli.org1.co" "peer0.org1.co:7041" "private-data" "$version" ""
-      chaincodeApprove "cli.org1.co" "peer0.org1.co:7041" "ch1" "private-data" "$version" "orderer0.auth.orderer.org:7030" "OR('Org1MSP.member', 'Org2MSP.member')" "false" "" "collections/private-data.json"
+      chaincodeApprove "cli.org1.co" "peer0.org1.co:7041" "ch1" "private-data" "$version" "orderer0.auth.orderer.org:7030" "AND('OwnersMSP.member', OutOf(1, 'Org1MSP.member', 'Org2MSP.member'))" "false" "" "collections/private-data.json"
       printHeadline "Installing 'private-data' for Org2" "U1F60E"
       chaincodeInstall "cli.org2.ac" "peer0.org2.ac:7061" "private-data" "$version" ""
-      chaincodeApprove "cli.org2.ac" "peer0.org2.ac:7061" "ch1" "private-data" "$version" "orderer0.auth.orderer.org:7030" "OR('Org1MSP.member', 'Org2MSP.member')" "false" "" "collections/private-data.json"
+      chaincodeApprove "cli.org2.ac" "peer0.org2.ac:7061" "ch1" "private-data" "$version" "orderer0.auth.orderer.org:7030" "AND('OwnersMSP.member', OutOf(1, 'Org1MSP.member', 'Org2MSP.member'))" "false" "" "collections/private-data.json"
       printHeadline "Installing 'private-data' for Owners" "U1F60E"
       chaincodeInstall "cli.owners.org" "peer0.owners.org:7081" "private-data" "$version" ""
-      chaincodeApprove "cli.owners.org" "peer0.owners.org:7081" "ch1" "private-data" "$version" "orderer0.auth.orderer.org:7030" "OR('Org1MSP.member', 'Org2MSP.member')" "false" "" "collections/private-data.json"
+      chaincodeApprove "cli.owners.org" "peer0.owners.org:7081" "ch1" "private-data" "$version" "orderer0.auth.orderer.org:7030" "AND('OwnersMSP.member', OutOf(1, 'Org1MSP.member', 'Org2MSP.member'))" "false" "" "collections/private-data.json"
       printItalics "Committing chaincode 'private-data' on channel 'ch1' as 'Org1'" "U1F618"
-      chaincodeCommit "cli.org1.co" "peer0.org1.co:7041" "ch1" "private-data" "$version" "orderer0.auth.orderer.org:7030" "OR('Org1MSP.member', 'Org2MSP.member')" "false" "" "peer0.org1.co:7041,peer0.org2.ac:7061,peer0.owners.org:7081" "" "collections/private-data.json"
+      chaincodeCommit "cli.org1.co" "peer0.org1.co:7041" "ch1" "private-data" "$version" "orderer0.auth.orderer.org:7030" "AND('OwnersMSP.member', OutOf(1, 'Org1MSP.member', 'Org2MSP.member'))" "false" "" "peer0.org1.co:7041,peer0.org2.ac:7061,peer0.owners.org:7081" "" "collections/private-data.json"
 
     else
       echo "Warning! Skipping chaincode 'private-data' install. Chaincode directory is empty."
@@ -106,13 +106,13 @@ runDevModeChaincode() {
   if [ "$chaincodeName" = "private-data" ]; then
     local version="1.0"
     printHeadline "Approving 'private-data' for Org1 (dev mode)" "U1F60E"
-    chaincodeApprove "cli.org1.co" "peer0.org1.co:7041" "ch1" "private-data" "1.0" "orderer0.auth.orderer.org:7030" "OR('Org1MSP.member', 'Org2MSP.member')" "false" "" "collections/private-data.json"
+    chaincodeApprove "cli.org1.co" "peer0.org1.co:7041" "ch1" "private-data" "1.0" "orderer0.auth.orderer.org:7030" "AND('OwnersMSP.member', OutOf(1, 'Org1MSP.member', 'Org2MSP.member'))" "false" "" "collections/private-data.json"
     printHeadline "Approving 'private-data' for Org2 (dev mode)" "U1F60E"
-    chaincodeApprove "cli.org2.ac" "peer0.org2.ac:7061" "ch1" "private-data" "1.0" "orderer0.auth.orderer.org:7030" "OR('Org1MSP.member', 'Org2MSP.member')" "false" "" "collections/private-data.json"
+    chaincodeApprove "cli.org2.ac" "peer0.org2.ac:7061" "ch1" "private-data" "1.0" "orderer0.auth.orderer.org:7030" "AND('OwnersMSP.member', OutOf(1, 'Org1MSP.member', 'Org2MSP.member'))" "false" "" "collections/private-data.json"
     printHeadline "Approving 'private-data' for Owners (dev mode)" "U1F60E"
-    chaincodeApprove "cli.owners.org" "peer0.owners.org:7081" "ch1" "private-data" "1.0" "orderer0.auth.orderer.org:7030" "OR('Org1MSP.member', 'Org2MSP.member')" "false" "" "collections/private-data.json"
+    chaincodeApprove "cli.owners.org" "peer0.owners.org:7081" "ch1" "private-data" "1.0" "orderer0.auth.orderer.org:7030" "AND('OwnersMSP.member', OutOf(1, 'Org1MSP.member', 'Org2MSP.member'))" "false" "" "collections/private-data.json"
     printItalics "Committing chaincode 'private-data' on channel 'ch1' as 'Org1' (dev mode)" "U1F618"
-    chaincodeCommit "cli.org1.co" "peer0.org1.co:7041" "ch1" "private-data" "1.0" "orderer0.auth.orderer.org:7030" "OR('Org1MSP.member', 'Org2MSP.member')" "false" "" "peer0.org1.co:7041,peer0.org2.ac:7061,peer0.owners.org:7081" "" "collections/private-data.json"
+    chaincodeCommit "cli.org1.co" "peer0.org1.co:7041" "ch1" "private-data" "1.0" "orderer0.auth.orderer.org:7030" "AND('OwnersMSP.member', OutOf(1, 'Org1MSP.member', 'Org2MSP.member'))" "false" "" "peer0.org1.co:7041,peer0.org2.ac:7061,peer0.owners.org:7081" "" "collections/private-data.json"
 
   fi
 }
@@ -136,15 +136,15 @@ upgradeChaincode() {
       chaincodeBuild "private-data" "java" "$CHAINCODES_BASE_DIR/private-data-chaincode" "16"
       chaincodePackage "cli.org1.co" "peer0.org1.co:7041" "private-data" "$version" "java" printHeadline "Installing 'private-data' for Org1" "U1F60E"
       chaincodeInstall "cli.org1.co" "peer0.org1.co:7041" "private-data" "$version" ""
-      chaincodeApprove "cli.org1.co" "peer0.org1.co:7041" "ch1" "private-data" "$version" "orderer0.auth.orderer.org:7030" "OR('Org1MSP.member', 'Org2MSP.member')" "false" "" "collections/private-data.json"
+      chaincodeApprove "cli.org1.co" "peer0.org1.co:7041" "ch1" "private-data" "$version" "orderer0.auth.orderer.org:7030" "AND('OwnersMSP.member', OutOf(1, 'Org1MSP.member', 'Org2MSP.member'))" "false" "" "collections/private-data.json"
       printHeadline "Installing 'private-data' for Org2" "U1F60E"
       chaincodeInstall "cli.org2.ac" "peer0.org2.ac:7061" "private-data" "$version" ""
-      chaincodeApprove "cli.org2.ac" "peer0.org2.ac:7061" "ch1" "private-data" "$version" "orderer0.auth.orderer.org:7030" "OR('Org1MSP.member', 'Org2MSP.member')" "false" "" "collections/private-data.json"
+      chaincodeApprove "cli.org2.ac" "peer0.org2.ac:7061" "ch1" "private-data" "$version" "orderer0.auth.orderer.org:7030" "AND('OwnersMSP.member', OutOf(1, 'Org1MSP.member', 'Org2MSP.member'))" "false" "" "collections/private-data.json"
       printHeadline "Installing 'private-data' for Owners" "U1F60E"
       chaincodeInstall "cli.owners.org" "peer0.owners.org:7081" "private-data" "$version" ""
-      chaincodeApprove "cli.owners.org" "peer0.owners.org:7081" "ch1" "private-data" "$version" "orderer0.auth.orderer.org:7030" "OR('Org1MSP.member', 'Org2MSP.member')" "false" "" "collections/private-data.json"
+      chaincodeApprove "cli.owners.org" "peer0.owners.org:7081" "ch1" "private-data" "$version" "orderer0.auth.orderer.org:7030" "AND('OwnersMSP.member', OutOf(1, 'Org1MSP.member', 'Org2MSP.member'))" "false" "" "collections/private-data.json"
       printItalics "Committing chaincode 'private-data' on channel 'ch1' as 'Org1'" "U1F618"
-      chaincodeCommit "cli.org1.co" "peer0.org1.co:7041" "ch1" "private-data" "$version" "orderer0.auth.orderer.org:7030" "OR('Org1MSP.member', 'Org2MSP.member')" "false" "" "peer0.org1.co:7041,peer0.org2.ac:7061,peer0.owners.org:7081" "" "collections/private-data.json"
+      chaincodeCommit "cli.org1.co" "peer0.org1.co:7041" "ch1" "private-data" "$version" "orderer0.auth.orderer.org:7030" "AND('OwnersMSP.member', OutOf(1, 'Org1MSP.member', 'Org2MSP.member'))" "false" "" "peer0.org1.co:7041,peer0.org2.ac:7061,peer0.owners.org:7081" "" "collections/private-data.json"
 
     else
       echo "Warning! Skipping chaincode 'private-data' upgrade. Chaincode directory is empty."
