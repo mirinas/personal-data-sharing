@@ -155,6 +155,27 @@ services:
     networks:
       - basic
 
+  fablo-rest.org1.co:
+    container_name: fablo-rest.org1.co
+    image: softwaremill/fablo-rest:${FABLO_REST_VERSION}
+    environment:
+      - PORT=8000
+      - MSP_ID=Org1MSP
+      - FABRIC_CA_URL=https://ca.org1.co:7054
+      - FABRIC_CA_NAME=ca.org1.co
+      - AS_LOCALHOST=false
+      - DISCOVERY_URLS=grpcs://peer0.org1.co:7041,grpcs://peer0.org2.ac:7061,grpcs://peer0.org3.gov:7081,grpcs://peer0.owners.org:7101
+      - DISCOVERY_SSL_TARGET_NAME_OVERRIDES=
+      - DISCOVERY_TLS_CA_CERT_FILES=/crypto/org1.co/peers/peer0.org1.co/tls/ca.crt,/crypto/org2.ac/peers/peer0.org2.ac/tls/ca.crt,/crypto/org3.gov/peers/peer0.org3.gov/tls/ca.crt,/crypto/owners.org/peers/peer0.owners.org/tls/ca.crt
+      - HFC_LOGGING={"error":"console","warn":"console","info":"console"}
+    volumes:
+      # note: fablo needs access to all anchor peer certs
+      - ../fabric-config/crypto-config/peerOrganizations:/crypto:ro
+    ports:
+      - 8801:8000
+    networks:
+      - basic
+
   peer0.org1.co:
     container_name: peer0.org1.co
     image: hyperledger/fabric-peer:${FABRIC_VERSION}
@@ -262,6 +283,27 @@ services:
     networks:
       - basic
 
+  fablo-rest.org2.ac:
+    container_name: fablo-rest.org2.ac
+    image: softwaremill/fablo-rest:${FABLO_REST_VERSION}
+    environment:
+      - PORT=8000
+      - MSP_ID=Org2MSP
+      - FABRIC_CA_URL=https://ca.org2.ac:7054
+      - FABRIC_CA_NAME=ca.org2.ac
+      - AS_LOCALHOST=false
+      - DISCOVERY_URLS=grpcs://peer0.org1.co:7041,grpcs://peer0.org2.ac:7061,grpcs://peer0.org3.gov:7081,grpcs://peer0.owners.org:7101
+      - DISCOVERY_SSL_TARGET_NAME_OVERRIDES=
+      - DISCOVERY_TLS_CA_CERT_FILES=/crypto/org1.co/peers/peer0.org1.co/tls/ca.crt,/crypto/org2.ac/peers/peer0.org2.ac/tls/ca.crt,/crypto/org3.gov/peers/peer0.org3.gov/tls/ca.crt,/crypto/owners.org/peers/peer0.owners.org/tls/ca.crt
+      - HFC_LOGGING={"error":"console","warn":"console","info":"console"}
+    volumes:
+      # note: fablo needs access to all anchor peer certs
+      - ../fabric-config/crypto-config/peerOrganizations:/crypto:ro
+    ports:
+      - 8802:8000
+    networks:
+      - basic
+
   peer0.org2.ac:
     container_name: peer0.org2.ac
     image: hyperledger/fabric-peer:${FABRIC_VERSION}
@@ -366,6 +408,27 @@ services:
       - ../fabric-config/chaincode-packages:/var/hyperledger/cli/chaincode-packages/
       - "$CHAINCODES_BASE_DIR/private-data-chaincode/:/var/hyperledger/cli/private-data/"
       - "../fabric-config/collections/private-data.json:/var/hyperledger/cli/collections/private-data.json"
+    networks:
+      - basic
+
+  fablo-rest.org3.gov:
+    container_name: fablo-rest.org3.gov
+    image: softwaremill/fablo-rest:${FABLO_REST_VERSION}
+    environment:
+      - PORT=8000
+      - MSP_ID=Org3MSP
+      - FABRIC_CA_URL=https://ca.org3.gov:7054
+      - FABRIC_CA_NAME=ca.org3.gov
+      - AS_LOCALHOST=false
+      - DISCOVERY_URLS=grpcs://peer0.org1.co:7041,grpcs://peer0.org2.ac:7061,grpcs://peer0.org3.gov:7081,grpcs://peer0.owners.org:7101
+      - DISCOVERY_SSL_TARGET_NAME_OVERRIDES=
+      - DISCOVERY_TLS_CA_CERT_FILES=/crypto/org1.co/peers/peer0.org1.co/tls/ca.crt,/crypto/org2.ac/peers/peer0.org2.ac/tls/ca.crt,/crypto/org3.gov/peers/peer0.org3.gov/tls/ca.crt,/crypto/owners.org/peers/peer0.owners.org/tls/ca.crt
+      - HFC_LOGGING={"error":"console","warn":"console","info":"console"}
+    volumes:
+      # note: fablo needs access to all anchor peer certs
+      - ../fabric-config/crypto-config/peerOrganizations:/crypto:ro
+    ports:
+      - 8803:8000
     networks:
       - basic
 
