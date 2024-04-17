@@ -2,7 +2,7 @@
 
 __getOrdererAndPeerNodes() {
   echo "
-      orderer0.authorities.orderer.org
+      orderer0.auth.orderer.org
       peer0.org1.co
       peer0.org2.ac
       peer0.org3.gov

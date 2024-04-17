@@ -44,7 +44,7 @@ peers:
       ssl-target-name-override: peer0.owners.org
 certificateAuthorities:
   ca.orderer.org:
-    url: http://localhost:7020
+    url: https://localhost:7020
     caName: ca.orderer.org
     tlsCACerts:
       path: >-

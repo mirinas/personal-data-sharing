@@ -59,7 +59,7 @@
   },
   "certificateAuthorities": {
     "ca.org2.ac": {
-      "url": "http://localhost:7060",
+      "url": "https://localhost:7060",
       "caName": "ca.org2.ac",
       "tlsCACerts": {
         "path": "/mnt/c/github/part3/personal-data-sharing/fablo-target/fabric-config/crypto-config/peerOrganizations/org2.ac/ca/ca.org2.ac-cert.pem"

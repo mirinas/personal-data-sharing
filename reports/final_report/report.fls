@@ -151,6 +151,10 @@ INPUT c:/texlive/2023/texmf-dist/tex/latex/inconsolata/ts1zi4.fd
 INPUT c:/texlive/2023/texmf-dist/tex/latex/inconsolata/ts1zi4.fd
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/inconsolata/ts1-zi4r.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/enc/dvips/inconsolata/i4-ts1.enc
+INPUT ./img/collections.png
+INPUT ./img/collections.png
+INPUT ./img/collections.png
+INPUT ./img/collections.png
 INPUT ./report.bbl
 INPUT ./report.bbl
 INPUT report.bbl

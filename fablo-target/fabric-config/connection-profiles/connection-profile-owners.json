@@ -59,7 +59,7 @@
   },
   "certificateAuthorities": {
     "ca.owners.org": {
-      "url": "http://localhost:7100",
+      "url": "https://localhost:7100",
       "caName": "ca.owners.org",
       "tlsCACerts": {
         "path": "/mnt/c/github/part3/personal-data-sharing/fablo-target/fabric-config/crypto-config/peerOrganizations/owners.org/ca/ca.owners.org-cert.pem"

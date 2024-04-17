@@ -59,7 +59,7 @@
   },
   "certificateAuthorities": {
     "ca.org3.gov": {
-      "url": "http://localhost:7080",
+      "url": "https://localhost:7080",
       "caName": "ca.org3.gov",
       "tlsCACerts": {
         "path": "/mnt/c/github/part3/personal-data-sharing/fablo-target/fabric-config/crypto-config/peerOrganizations/org3.gov/ca/ca.org3.gov-cert.pem"

@@ -59,7 +59,7 @@
   },
   "certificateAuthorities": {
     "ca.orderer.org": {
-      "url": "http://localhost:7020",
+      "url": "https://localhost:7020",
       "caName": "ca.orderer.org",
       "tlsCACerts": {
         "path": "/mnt/c/github/part3/personal-data-sharing/fablo-target/fabric-config/crypto-config/peerOrganizations/orderer.org/ca/ca.orderer.org-cert.pem"

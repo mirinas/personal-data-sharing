@@ -170,10 +170,17 @@ Application: &ApplicationDefaults
 ################################################################################
 #   SECTION: Orderer
 ################################################################################
-Orderer: &AuthoritiesDefaults
-    OrdererType: solo
+Orderer: &AuthDefaults
+    OrdererType: etcdraft
     Addresses:
-        - orderer0.authorities.orderer.org:7030
+        - orderer0.auth.orderer.org:7030
+    EtcdRaft:
+        Consenters:
+            - Host: orderer0.auth.orderer.org
+              Port: 7030
+              ClientTLSCert: crypto-config/peerOrganizations/orderer.org/peers/orderer0.auth.orderer.org/tls/server.crt
+              ServerTLSCert: crypto-config/peerOrganizations/orderer.org/peers/orderer0.auth.orderer.org/tls/server.crt
+
     BatchTimeout: 2s
     BatchSize:
         MaxMessageCount: 10
@@ -207,11 +214,11 @@ Orderer: &AuthoritiesDefaults
 # https://github:com/hyperledger/fabric/blob/master/sampleconfig/configtx.yaml
 
 Profiles:
-    # Profile used to create Genesis block for group authorities #
-    AuthoritiesGenesis:
+    # Profile used to create Genesis block for group auth #
+    AuthGenesis:
         <<: *ChannelDefaults
         Orderer:
-            <<: *AuthoritiesDefaults
+            <<: *AuthDefaults
             Organizations:
                 - *Orderer
             Capabilities:
@@ -229,7 +236,7 @@ Profiles:
     Ch1:
         <<: *ChannelDefaults
         Orderer:
-            <<: *AuthoritiesDefaults
+            <<: *AuthDefaults
             Organizations:
                 - *Orderer
             Capabilities:

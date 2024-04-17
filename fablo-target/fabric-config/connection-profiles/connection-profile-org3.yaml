@@ -44,7 +44,7 @@ peers:
       ssl-target-name-override: peer0.owners.org
 certificateAuthorities:
   ca.org3.gov:
-    url: http://localhost:7080
+    url: https://localhost:7080
     caName: ca.org3.gov
     tlsCACerts:
       path: >-

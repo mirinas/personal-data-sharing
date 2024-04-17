@@ -51,7 +51,7 @@ services:
       - ../fabric-docker/scripts/cli:/var/hyperledger/cli/scripts/
       - ../fabric-config/config:/var/hyperledger/cli/config/ # genesis.block and channel.tx's
       - ../fabric-config/crypto-config/peerOrganizations/orderer.org:/var/hyperledger/cli/crypto/
-      - ../fabric-config/crypto-config/peerOrganizations/orderer.org/peers/orderer0.authorities.orderer.org/msp/tlscacerts/tlsca.orderer.org-cert.pem:/var/hyperledger/cli/crypto-orderer/tlsca.orderer.org-cert.pem:ro
+      - ../fabric-config/crypto-config/peerOrganizations/orderer.org/peers/orderer0.auth.orderer.org/msp/tlscacerts/tlsca.orderer.org-cert.pem:/var/hyperledger/cli/crypto-orderer/tlsca.orderer.org-cert.pem:ro
       - ../fabric-config/crypto-config/peerOrganizations/org1.co/peers/peer0.org1.co/tls/ca.crt:/var/hyperledger/cli/crypto-peer/peer0.org1.co/tls/ca.crt:ro
       - ../fabric-config/crypto-config/peerOrganizations/org2.ac/peers/peer0.org2.ac/tls/ca.crt:/var/hyperledger/cli/crypto-peer/peer0.org2.ac/tls/ca.crt:ro
       - ../fabric-config/crypto-config/peerOrganizations/org3.gov/peers/peer0.org3.gov/tls/ca.crt:/var/hyperledger/cli/crypto-peer/peer0.org3.gov/tls/ca.crt:ro
@@ -62,20 +62,20 @@ services:
     networks:
       - basic
 
-  orderer0.authorities.orderer.org:
-    container_name: orderer0.authorities.orderer.org
+  orderer0.auth.orderer.org:
+    container_name: orderer0.auth.orderer.org
     image: hyperledger/fabric-orderer:${FABRIC_VERSION}
     environment:
       - FABRIC_LOGGING_SPEC=${LOGGING_LEVEL}
       - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
       - ORDERER_GENERAL_LISTENPORT=7030
       - ORDERER_GENERAL_GENESISMETHOD=file
-      - ORDERER_GENERAL_BOOTSTRAPFILE=/var/hyperledger/config/AuthoritiesGenesis.block
+      - ORDERER_GENERAL_BOOTSTRAPFILE=/var/hyperledger/config/AuthGenesis.block
       - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
       - ORDERER_GENERAL_LOCALMSPDIR=/var/hyperledger/orderer/msp
       - GODEBUG=netdns=go
       # metrics
-      - ORDERER_OPERATIONS_LISTENADDRESS=orderer0.authorities.orderer.org:9440
+      - ORDERER_OPERATIONS_LISTENADDRESS=orderer0.auth.orderer.org:9440
       - ORDERER_METRICS_PROVIDER=prometheus
       # enabled TLS
       - ORDERER_GENERAL_TLS_ENABLED=true
@@ -92,8 +92,8 @@ services:
       - 8030:9440
     volumes:
       - ../fabric-config/config/:/var/hyperledger/config
-      - ../fabric-config/crypto-config/peerOrganizations/orderer.org/peers/orderer0.authorities.orderer.org/msp/:/var/hyperledger/orderer/msp
-      - ../fabric-config/crypto-config/peerOrganizations/orderer.org/peers/orderer0.authorities.orderer.org/tls/:/var/hyperledger/orderer/tls
+      - ../fabric-config/crypto-config/peerOrganizations/orderer.org/peers/orderer0.auth.orderer.org/msp/:/var/hyperledger/orderer/msp
+      - ../fabric-config/crypto-config/peerOrganizations/orderer.org/peers/orderer0.auth.orderer.org/tls/:/var/hyperledger/orderer/tls
     networks:
       - basic
 
@@ -144,7 +144,7 @@ services:
       - ../fabric-docker/scripts/cli:/var/hyperledger/cli/scripts/
       - ../fabric-config/config:/var/hyperledger/cli/config/ # genesis.block and channel.tx's
       - ../fabric-config/crypto-config/peerOrganizations/org1.co:/var/hyperledger/cli/crypto/
-      - ../fabric-config/crypto-config/peerOrganizations/orderer.org/peers/orderer0.authorities.orderer.org/msp/tlscacerts/tlsca.orderer.org-cert.pem:/var/hyperledger/cli/crypto-orderer/tlsca.orderer.org-cert.pem:ro
+      - ../fabric-config/crypto-config/peerOrganizations/orderer.org/peers/orderer0.auth.orderer.org/msp/tlscacerts/tlsca.orderer.org-cert.pem:/var/hyperledger/cli/crypto-orderer/tlsca.orderer.org-cert.pem:ro
       - ../fabric-config/crypto-config/peerOrganizations/org1.co/peers/peer0.org1.co/tls/ca.crt:/var/hyperledger/cli/crypto-peer/peer0.org1.co/tls/ca.crt:ro
       - ../fabric-config/crypto-config/peerOrganizations/org2.ac/peers/peer0.org2.ac/tls/ca.crt:/var/hyperledger/cli/crypto-peer/peer0.org2.ac/tls/ca.crt:ro
       - ../fabric-config/crypto-config/peerOrganizations/org3.gov/peers/peer0.org3.gov/tls/ca.crt:/var/hyperledger/cli/crypto-peer/peer0.org3.gov/tls/ca.crt:ro
@@ -251,7 +251,7 @@ services:
       - ../fabric-docker/scripts/cli:/var/hyperledger/cli/scripts/
       - ../fabric-config/config:/var/hyperledger/cli/config/ # genesis.block and channel.tx's
       - ../fabric-config/crypto-config/peerOrganizations/org2.ac:/var/hyperledger/cli/crypto/
-      - ../fabric-config/crypto-config/peerOrganizations/orderer.org/peers/orderer0.authorities.orderer.org/msp/tlscacerts/tlsca.orderer.org-cert.pem:/var/hyperledger/cli/crypto-orderer/tlsca.orderer.org-cert.pem:ro
+      - ../fabric-config/crypto-config/peerOrganizations/orderer.org/peers/orderer0.auth.orderer.org/msp/tlscacerts/tlsca.orderer.org-cert.pem:/var/hyperledger/cli/crypto-orderer/tlsca.orderer.org-cert.pem:ro
       - ../fabric-config/crypto-config/peerOrganizations/org1.co/peers/peer0.org1.co/tls/ca.crt:/var/hyperledger/cli/crypto-peer/peer0.org1.co/tls/ca.crt:ro
       - ../fabric-config/crypto-config/peerOrganizations/org2.ac/peers/peer0.org2.ac/tls/ca.crt:/var/hyperledger/cli/crypto-peer/peer0.org2.ac/tls/ca.crt:ro
       - ../fabric-config/crypto-config/peerOrganizations/org3.gov/peers/peer0.org3.gov/tls/ca.crt:/var/hyperledger/cli/crypto-peer/peer0.org3.gov/tls/ca.crt:ro
@@ -358,7 +358,7 @@ services:
       - ../fabric-docker/scripts/cli:/var/hyperledger/cli/scripts/
       - ../fabric-config/config:/var/hyperledger/cli/config/ # genesis.block and channel.tx's
       - ../fabric-config/crypto-config/peerOrganizations/org3.gov:/var/hyperledger/cli/crypto/
-      - ../fabric-config/crypto-config/peerOrganizations/orderer.org/peers/orderer0.authorities.orderer.org/msp/tlscacerts/tlsca.orderer.org-cert.pem:/var/hyperledger/cli/crypto-orderer/tlsca.orderer.org-cert.pem:ro
+      - ../fabric-config/crypto-config/peerOrganizations/orderer.org/peers/orderer0.auth.orderer.org/msp/tlscacerts/tlsca.orderer.org-cert.pem:/var/hyperledger/cli/crypto-orderer/tlsca.orderer.org-cert.pem:ro
       - ../fabric-config/crypto-config/peerOrganizations/org1.co/peers/peer0.org1.co/tls/ca.crt:/var/hyperledger/cli/crypto-peer/peer0.org1.co/tls/ca.crt:ro
       - ../fabric-config/crypto-config/peerOrganizations/org2.ac/peers/peer0.org2.ac/tls/ca.crt:/var/hyperledger/cli/crypto-peer/peer0.org2.ac/tls/ca.crt:ro
       - ../fabric-config/crypto-config/peerOrganizations/org3.gov/peers/peer0.org3.gov/tls/ca.crt:/var/hyperledger/cli/crypto-peer/peer0.org3.gov/tls/ca.crt:ro
@@ -465,7 +465,7 @@ services:
       - ../fabric-docker/scripts/cli:/var/hyperledger/cli/scripts/
       - ../fabric-config/config:/var/hyperledger/cli/config/ # genesis.block and channel.tx's
       - ../fabric-config/crypto-config/peerOrganizations/owners.org:/var/hyperledger/cli/crypto/
-      - ../fabric-config/crypto-config/peerOrganizations/orderer.org/peers/orderer0.authorities.orderer.org/msp/tlscacerts/tlsca.orderer.org-cert.pem:/var/hyperledger/cli/crypto-orderer/tlsca.orderer.org-cert.pem:ro
+      - ../fabric-config/crypto-config/peerOrganizations/orderer.org/peers/orderer0.auth.orderer.org/msp/tlscacerts/tlsca.orderer.org-cert.pem:/var/hyperledger/cli/crypto-orderer/tlsca.orderer.org-cert.pem:ro
       - ../fabric-config/crypto-config/peerOrganizations/org1.co/peers/peer0.org1.co/tls/ca.crt:/var/hyperledger/cli/crypto-peer/peer0.org1.co/tls/ca.crt:ro
       - ../fabric-config/crypto-config/peerOrganizations/org2.ac/peers/peer0.org2.ac/tls/ca.crt:/var/hyperledger/cli/crypto-peer/peer0.org2.ac/tls/ca.crt:ro
       - ../fabric-config/crypto-config/peerOrganizations/org3.gov/peers/peer0.org3.gov/tls/ca.crt:/var/hyperledger/cli/crypto-peer/peer0.org3.gov/tls/ca.crt:ro
@@ -473,6 +473,27 @@ services:
       - ../fabric-config/chaincode-packages:/var/hyperledger/cli/chaincode-packages/
       - "$CHAINCODES_BASE_DIR/private-data-chaincode/:/var/hyperledger/cli/private-data/"
       - "../fabric-config/collections/private-data.json:/var/hyperledger/cli/collections/private-data.json"
+    networks:
+      - basic
+
+  fablo-rest.owners.org:
+    container_name: fablo-rest.owners.org
+    image: softwaremill/fablo-rest:${FABLO_REST_VERSION}
+    environment:
+      - PORT=8000
+      - MSP_ID=OwnersMSP
+      - FABRIC_CA_URL=https://ca.owners.org:7054
+      - FABRIC_CA_NAME=ca.owners.org
+      - AS_LOCALHOST=false
+      - DISCOVERY_URLS=grpcs://peer0.org1.co:7041,grpcs://peer0.org2.ac:7061,grpcs://peer0.org3.gov:7081,grpcs://peer0.owners.org:7101
+      - DISCOVERY_SSL_TARGET_NAME_OVERRIDES=
+      - DISCOVERY_TLS_CA_CERT_FILES=/crypto/org1.co/peers/peer0.org1.co/tls/ca.crt,/crypto/org2.ac/peers/peer0.org2.ac/tls/ca.crt,/crypto/org3.gov/peers/peer0.org3.gov/tls/ca.crt,/crypto/owners.org/peers/peer0.owners.org/tls/ca.crt
+      - HFC_LOGGING={"error":"console","warn":"console","info":"console"}
+    volumes:
+      # note: fablo needs access to all anchor peer certs
+      - ../fabric-config/crypto-config/peerOrganizations:/crypto:ro
+    ports:
+      - 8804:8000
     networks:
       - basic
 

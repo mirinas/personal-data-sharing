@@ -2,7 +2,7 @@ PeerOrgs:
   - Name: Orderer
     Domain: orderer.org
     Specs:
-      - Hostname: orderer0.authorities
+      - Hostname: orderer0.auth
     Template:
       Count: 0
     Users:
