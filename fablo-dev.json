@@ -111,7 +111,7 @@
       "lang": "java",
       "channel": "ch1",
       "directory": "private-data-chaincode",
-      "endorsement": "AND('OwnersMSP.member', OutOf(1, 'Org1MSP.member', 'Org2MSP.member'))",
+      "endorsement": "OR('OwnersMSP.member', 'Org1MSP.member', 'Org2MSP.member')",
       "privateData": [
         {
           "name": "CollectionA",
