@@ -30,26 +30,28 @@ Channel: &ChannelDefaults
 #   Section: Organizations
 ################################################################################
 Organizations:
-    - &Orderer
-      Name: OrdererMSP
-      ID: OrdererMSP
-      MSPDir: crypto-config/peerOrganizations/orderer.org/msp
+    - &Owners
+      Name: OwnersMSP
+      ID: OwnersMSP
+      MSPDir: crypto-config/peerOrganizations/owners.org/msp
 
       Policies:
           Readers:
               Type: Signature
-              Rule: "OR('OrdererMSP.member')"
+              Rule: "OR('OwnersMSP.member')"
           Writers:
               Type: Signature
-              Rule: "OR('OrdererMSP.member')"
+              Rule: "OR('OwnersMSP.member')"
           Admins:
               Type: Signature
-              Rule: "OR('OrdererMSP.admin')"
+              Rule: "OR('OwnersMSP.admin')"
           Endorsement:
               Type: Signature
-              Rule: "OR('OrdererMSP.member')"
+              Rule: "OR('OwnersMSP.member')"
 
       AnchorPeers:
+          - Host: peer0.owners.org
+            Port: 7021
 
     - &Org1
       Name: Org1MSP
@@ -120,29 +122,6 @@ Organizations:
           - Host: peer0.org3.gov
             Port: 7081
 
-    - &Owners
-      Name: OwnersMSP
-      ID: OwnersMSP
-      MSPDir: crypto-config/peerOrganizations/owners.org/msp
-
-      Policies:
-          Readers:
-              Type: Signature
-              Rule: "OR('OwnersMSP.member')"
-          Writers:
-              Type: Signature
-              Rule: "OR('OwnersMSP.member')"
-          Admins:
-              Type: Signature
-              Rule: "OR('OwnersMSP.admin')"
-          Endorsement:
-              Type: Signature
-              Rule: "OR('OwnersMSP.member')"
-
-      AnchorPeers:
-          - Host: peer0.owners.org
-            Port: 7101
-
 ################################################################################
 #   SECTION: Application
 ################################################################################
@@ -170,16 +149,16 @@ Application: &ApplicationDefaults
 ################################################################################
 #   SECTION: Orderer
 ################################################################################
-Orderer: &AuthDefaults
+Orderer: &AuthorityDefaults
     OrdererType: etcdraft
     Addresses:
-        - orderer0.auth.orderer.org:7030
+        - orderer0.authority.owners.org:7030
     EtcdRaft:
         Consenters:
-            - Host: orderer0.auth.orderer.org
+            - Host: orderer0.authority.owners.org
               Port: 7030
-              ClientTLSCert: crypto-config/peerOrganizations/orderer.org/peers/orderer0.auth.orderer.org/tls/server.crt
-              ServerTLSCert: crypto-config/peerOrganizations/orderer.org/peers/orderer0.auth.orderer.org/tls/server.crt
+              ClientTLSCert: crypto-config/peerOrganizations/owners.org/peers/orderer0.authority.owners.org/tls/server.crt
+              ServerTLSCert: crypto-config/peerOrganizations/owners.org/peers/orderer0.authority.owners.org/tls/server.crt
 
     BatchTimeout: 2s
     BatchSize:
@@ -214,45 +193,44 @@ Orderer: &AuthDefaults
 # https://github:com/hyperledger/fabric/blob/master/sampleconfig/configtx.yaml
 
 Profiles:
-    # Profile used to create Genesis block for group auth #
-    AuthGenesis:
+    # Profile used to create Genesis block for group authority #
+    AuthorityGenesis:
         <<: *ChannelDefaults
         Orderer:
-            <<: *AuthDefaults
+            <<: *AuthorityDefaults
             Organizations:
-                - *Orderer
+                - *Owners
             Capabilities:
                 <<: *OrdererCapabilities
         Consortiums:
             SampleConsortium:
                 Organizations:
-                    - *Orderer
+                    - *Owners
                     - *Org1
                     - *Org2
                     - *Org3
-                    - *Owners
 
     # Profile used to create channeltx for ch1 #
     Ch1:
         <<: *ChannelDefaults
         Orderer:
-            <<: *AuthDefaults
+            <<: *AuthorityDefaults
             Organizations:
-                - *Orderer
+                - *Owners
             Capabilities:
                 <<: *ApplicationCapabilities
         Consortium: SampleConsortium
         Consortiums:
             SampleConsortium:
                 Organizations:
+                    - *Owners
                     - *Org1
                     - *Org2
                     - *Org3
-                    - *Owners
         Application:
             <<: *ApplicationDefaults
             Organizations:
+                - *Owners
                 - *Org1
                 - *Org2
                 - *Org3
-                - *Owners

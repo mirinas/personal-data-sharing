@@ -2,21 +2,20 @@
 
 __getOrdererAndPeerNodes() {
   echo "
-      orderer0.auth.orderer.org
+      orderer0.authority.owners.org
+      peer0.owners.org
       peer0.org1.co
       peer0.org2.ac
       peer0.org3.gov
-      peer0.owners.org
   "
 }
 
 __getCASQLiteNodes() {
   echo "
-      ca.orderer.org
+      ca.owners.org
       ca.org1.co
       ca.org2.ac
       ca.org3.gov
-      ca.owners.org
   "
 }
 

@@ -1,5 +1,9 @@
 {
   "network-configs": {
+    "network-owners": {
+      "name": "Network of Owners",
+      "profile": "/opt/explorer/app/platform/fabric/connection-profile/connection-profile-owners.json"
+    },
     "network-org1": {
       "name": "Network of Org1",
       "profile": "/opt/explorer/app/platform/fabric/connection-profile/connection-profile-org1.json"
@@ -11,10 +15,6 @@
     "network-org3": {
       "name": "Network of Org3",
       "profile": "/opt/explorer/app/platform/fabric/connection-profile/connection-profile-org3.json"
-    },
-    "network-owners": {
-      "name": "Network of Owners",
-      "profile": "/opt/explorer/app/platform/fabric/connection-profile/connection-profile-owners.json"
     }
   },
   "license": "Apache-2.0"

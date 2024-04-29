@@ -1,13 +1,24 @@
-\contentsline {section}{\numberline {1}Design}{3}{}%
-\contentsline {subsection}{\numberline {1.1}Data privacy}{3}{}%
-\contentsline {subsection}{\numberline {1.2}Blockchain}{4}{}%
-\contentsline {subsubsection}{\numberline {1.2.1}Motivation}{4}{}%
-\contentsline {subsubsection}{\numberline {1.2.2}Network design}{5}{}%
-\contentsline {section}{\numberline {2}Implementation}{6}{}%
-\contentsline {subsection}{\numberline {2.1}Environment and tools}{6}{}%
-\contentsline {subsection}{\numberline {2.2}Network configuration}{7}{}%
-\contentsline {subsection}{\numberline {2.3}Chaincode endorsement}{10}{}%
-\contentsline {subsection}{\numberline {2.4}Private collections}{12}{}%
-\contentsline {section}{\numberline {3}Example scenarios}{13}{}%
-\contentsline {subsection}{\numberline {3.1}Private data tampering}{13}{}%
-\contentsline {section}{References}{14}{}%
+\contentsline {section}{\numberline {1}Introduction}{3}{}%
+\contentsline {subsection}{\numberline {1.1}Trustless system}{3}{}%
+\contentsline {subsection}{\numberline {1.2}User consent}{4}{}%
+\contentsline {section}{\numberline {2}Literature review}{4}{}%
+\contentsline {subsection}{\numberline {2.1}Consent management}{5}{}%
+\contentsline {subsection}{\numberline {2.2}System attributes}{6}{}%
+\contentsline {section}{\numberline {3}Design}{7}{}%
+\contentsline {subsection}{\numberline {3.1}Information exchange}{7}{}%
+\contentsline {subsection}{\numberline {3.2}Distributed architecture}{9}{}%
+\contentsline {subsubsection}{\numberline {3.2.1}Components}{11}{}%
+\contentsline {section}{\numberline {4}Implementation}{12}{}%
+\contentsline {subsection}{\numberline {4.1}Environment and tools}{13}{}%
+\contentsline {subsection}{\numberline {4.2}Network configuration}{13}{}%
+\contentsline {subsection}{\numberline {4.3}Chaincode endorsement}{16}{}%
+\contentsline {subsection}{\numberline {4.4}Private collections}{19}{}%
+\contentsline {subsection}{\numberline {4.5}Data publishing and consent preservation}{20}{}%
+\contentsline {subsection}{\numberline {4.6}Chaincode invokation}{24}{}%
+\contentsline {section}{\numberline {5}Testing and evaluation}{26}{}%
+\contentsline {subsection}{\numberline {5.1}Scenario testing}{26}{}%
+\contentsline {subsection}{\numberline {5.2}Evaluation}{26}{}%
+\contentsline {subsection}{\numberline {5.3}Future considerations}{26}{}%
+\contentsline {section}{\numberline {6}Conclusion}{26}{}%
+\contentsline {section}{References}{27}{}%
+\contentsline {section}{\numberline {A}Appendix: Chaincode functions}{29}{}%

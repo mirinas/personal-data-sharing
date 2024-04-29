@@ -7,13 +7,20 @@ organizations:
   Org2:
     mspid: Org2MSP
     peers:
+      - peer0.owners.org
       - peer0.org1.co
       - peer0.org2.ac
       - peer0.org3.gov
-      - peer0.owners.org
     certificateAuthorities:
       - ca.org2.ac
 peers:
+  peer0.owners.org:
+    url: grpcs://localhost:7021
+    tlsCACerts:
+      path: >-
+        /mnt/c/github/part3/personal-data-sharing/fablo-target/fabric-config/crypto-config/peerOrganizations/owners.org/peers/peer0.owners.org/tls/ca.crt
+    grpcOptions:
+      ssl-target-name-override: peer0.owners.org
   peer0.org1.co:
     url: grpcs://localhost:7041
     tlsCACerts:
@@ -35,13 +42,6 @@ peers:
         /mnt/c/github/part3/personal-data-sharing/fablo-target/fabric-config/crypto-config/peerOrganizations/org3.gov/peers/peer0.org3.gov/tls/ca.crt
     grpcOptions:
       ssl-target-name-override: peer0.org3.gov
-  peer0.owners.org:
-    url: grpcs://localhost:7101
-    tlsCACerts:
-      path: >-
-        /mnt/c/github/part3/personal-data-sharing/fablo-target/fabric-config/crypto-config/peerOrganizations/owners.org/peers/peer0.owners.org/tls/ca.crt
-    grpcOptions:
-      ssl-target-name-override: peer0.owners.org
 certificateAuthorities:
   ca.org2.ac:
     url: https://localhost:7060

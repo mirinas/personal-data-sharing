@@ -10,17 +10,29 @@
   "orgs": [
     {
       "organization": {
-        "name": "Orderer",
-        "domain": "orderer.org"
+        "name": "Owners",
+        "mspName": "OwnersMSP",
+        "domain": "owners.org"
+      },
+      "ca": {
+        "prefix": "ca"
+      },
+      "peer": {
+        "prefix": "peer",
+        "instances": 1,
+        "db": "LevelDb"
       },
       "orderers": [
         {
-          "groupName": "auth",
+          "groupName": "authority",
           "prefix": "orderer",
           "type": "raft",
           "instances": 1
         }
-      ]
+      ],
+      "tools": {
+        "fabloRest": true
+      }
     },
     {
       "organization": {
@@ -75,30 +87,18 @@
       "tools": {
         "fabloRest": true
       }
-    },
-    {
-      "organization": {
-        "name": "Owners",
-        "mspName": "OwnersMSP",
-        "domain": "owners.org"
-      },
-      "ca": {
-        "prefix": "ca"
-      },
-      "peer": {
-        "prefix": "peer",
-        "instances": 1,
-        "db": "LevelDb"
-      },
-      "tools": {
-        "fabloRest": true
-      }
     }
   ],
   "channels": [
     {
       "name": "ch1",
       "orgs": [
+        {
+          "name": "Owners",
+          "peers": [
+            "peer0"
+          ]
+        },
         {
           "name": "Org1",
           "peers": [
@@ -116,12 +116,6 @@
           "peers": [
             "peer0"
           ]
-        },
-        {
-          "name": "Owners",
-          "peers": [
-            "peer0"
-          ]
         }
       ]
     }
@@ -133,7 +127,7 @@
       "lang": "java",
       "channel": "ch1",
       "directory": "private-data-chaincode",
-      "endorsement": "AND('OwnersMSP.member', OutOf(2, 'Org1MSP.member', 'Org2MSP.member', 'Org3MSP.member'))",
+      "endorsement": "OutOf(2, 'OwnersMSP.member', 'Org1MSP.member', 'Org2MSP.member', 'Org3MSP.member')",
       "privateData": [
         {
           "name": "CollectionA",

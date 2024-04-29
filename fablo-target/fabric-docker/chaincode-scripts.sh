@@ -5,27 +5,27 @@ chaincodeList() {
     echo "Expected 2 parameters for chaincode list, but got: $*"
     exit 1
 
-  elif [ "$1" = "peer0.org1.co" ]; then
+  elif [ "$1" = "peer0.owners.org" ]; then
 
-    peerChaincodeListTls "cli.org1.co" "peer0.org1.co:7041" "$2" "crypto-orderer/tlsca.orderer.org-cert.pem" # Third argument is channel name
+    peerChaincodeListTls "cli.owners.org" "peer0.owners.org:7021" "$2" "crypto-orderer/tlsca.owners.org-cert.pem" # Third argument is channel name
+
+  elif
+    [ "$1" = "peer0.org1.co" ]
+  then
+
+    peerChaincodeListTls "cli.org1.co" "peer0.org1.co:7041" "$2" "crypto-orderer/tlsca.owners.org-cert.pem" # Third argument is channel name
 
   elif
     [ "$1" = "peer0.org2.ac" ]
   then
 
-    peerChaincodeListTls "cli.org2.ac" "peer0.org2.ac:7061" "$2" "crypto-orderer/tlsca.orderer.org-cert.pem" # Third argument is channel name
+    peerChaincodeListTls "cli.org2.ac" "peer0.org2.ac:7061" "$2" "crypto-orderer/tlsca.owners.org-cert.pem" # Third argument is channel name
 
   elif
     [ "$1" = "peer0.org3.gov" ]
   then
 
-    peerChaincodeListTls "cli.org3.gov" "peer0.org3.gov:7081" "$2" "crypto-orderer/tlsca.orderer.org-cert.pem" # Third argument is channel name
-
-  elif
-    [ "$1" = "peer0.owners.org" ]
-  then
-
-    peerChaincodeListTls "cli.owners.org" "peer0.owners.org:7101" "$2" "crypto-orderer/tlsca.orderer.org-cert.pem" # Third argument is channel name
+    peerChaincodeListTls "cli.org3.gov" "peer0.org3.gov:7081" "$2" "crypto-orderer/tlsca.owners.org-cert.pem" # Third argument is channel name
 
   else
 
@@ -52,6 +52,13 @@ chaincodeInvoke() {
 
   peer_certs=""
 
+  if [[ "$1" == *"peer0.owners.org"* ]]; then
+    cli="cli.owners.org"
+    peer_addresses="$peer_addresses,peer0.owners.org:7021"
+
+    peer_certs="$peer_certs,crypto/peers/peer0.owners.org/tls/ca.crt"
+
+  fi
   if [[ "$1" == *"peer0.org1.co"* ]]; then
     cli="cli.org1.co"
     peer_addresses="$peer_addresses,peer0.org1.co:7041"
@@ -73,20 +80,13 @@ chaincodeInvoke() {
     peer_certs="$peer_certs,crypto/peers/peer0.org3.gov/tls/ca.crt"
 
   fi
-  if [[ "$1" == *"peer0.owners.org"* ]]; then
-    cli="cli.owners.org"
-    peer_addresses="$peer_addresses,peer0.owners.org:7101"
-
-    peer_certs="$peer_certs,crypto/peers/peer0.owners.org/tls/ca.crt"
-
-  fi
   if [ -z "$peer_addresses" ]; then
     echo "Unknown peers: $1"
     exit 1
   fi
 
   if [ "$2" = "ch1" ]; then
-    ca_cert="crypto-orderer/tlsca.orderer.org-cert.pem"
+    ca_cert="crypto-orderer/tlsca.owners.org-cert.pem"
   fi
 
   peerChaincodeInvokeTls "$cli" "${peer_addresses:1}" "$2" "$3" "$4" "$5" "${peer_certs:1}" "$ca_cert"

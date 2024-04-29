@@ -1,8 +1,8 @@
-PWD c:/gitlab/partIII/reports/progress_report
+PWD c:/github/part3/personal-data-sharing/reports/progress_report
 INPUT c:/texlive/2023/texmf.cnf
 INPUT c:/texlive/2023/texmf-dist/web2c/texmf.cnf
 INPUT c:/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT c:/gitlab/partIII/reports/progress_report/report.tex
+INPUT c:/github/part3/personal-data-sharing/reports/progress_report/report.tex
 OUTPUT report.log
 INPUT c:/texlive/2023/texmf-dist/tex/latex/base/article.cls
 INPUT c:/texlive/2023/texmf-dist/tex/latex/base/article.cls

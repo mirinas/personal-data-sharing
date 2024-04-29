@@ -35,7 +35,7 @@
   },
   "peers": {
     "peer0.owners.org": {
-      "url": "grpcs://peer0.owners.org:7101",
+      "url": "grpcs://peer0.owners.org:7021",
       "tlsCACerts": {
         "path": "/tmp/crypto/peerOrganizations/owners.org/msp/tlscacerts/tlsca.owners.org-cert.pem"
       }
