@@ -12,17 +12,29 @@
   "orgs": [
     {
       "organization": {
-        "name": "Orderer",
-        "domain": "orderer.org"
+        "name": "Owners",
+        "mspName": "OwnersMSP",
+        "domain": "owners.org"
+      },
+      "ca": {
+        "prefix": "ca"
+      },
+      "peer": {
+        "prefix": "peer",
+        "instances": 1,
+        "db": "LevelDb"
       },
       "orderers": [
         {
-	  "groupName": "auth",
+	  "groupName": "authority",
           "prefix": "orderer",
           "type": "solo",
           "instances": 1
         }
-      ]
+      ],
+      "tools": {
+        "fabloRest": true
+      }
     },
     {
       "organization": {
@@ -47,24 +59,6 @@
         "name": "Org2",
         "mspName": "Org2MSP",
         "domain": "org2.ac"
-      },
-      "ca": {
-        "prefix": "ca"
-      },
-      "peer": {
-        "prefix": "peer",
-        "instances": 1,
-        "db": "LevelDb"
-      },
-      "tools": {
-        "fabloRest": true
-      }
-    },
-    {
-      "organization": {
-        "name": "Owners",
-        "mspName": "OwnersMSP",
-        "domain": "owners.org"
       },
       "ca": {
         "prefix": "ca"

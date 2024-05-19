@@ -1,8 +1,0 @@
-PeerOrgs:
-  - Name: Owners
-    Domain: owners.org
-    Specs:
-    Template:
-      Count: 1
-    Users:
-      Count: 1
