@@ -18,6 +18,7 @@
 \definecolor{codegreen}{HTML}{428747}
 \definecolor{backcolour}{HTML}{EDEDED}
 \definecolor{codebrown}{HTML}{A34900}
+\definecolor{codeyellow}{HTML}{E3DC17}
 
 \usepackage{listings}
 \lstset{basicstyle=\ttfamily}
@@ -43,6 +44,21 @@
     backgroundcolor=\color{backcolour},
     comment=[l]{>},
     commentstyle=\color{codebrown},
+    breaklines=true,
+    showstringspaces=false,
+    frame=single,
+    numbers=left,
+    captionpos=b
+}
+
+\lstdefinestyle{java}{
+    numberstyle=\color{numcolour}\footnotesize\ttfamily,
+    basicstyle=\color{black}\footnotesize\ttfamily,
+    backgroundcolor=\color{backcolour},
+    comment=[l]{@},
+    commentstyle=\color{codeyellow},
+    keywordstyle=\color{codegreen},
+    stringstyle=\color{codebrown},
     breaklines=true,
     showstringspaces=false,
     frame=single,
@@ -101,7 +117,7 @@
     \end{titlepage}
 
     \section*{Abstract}
-    
+    Information exchanges, respecting data subject's consent to share information exist, however, personal data privacy relies on trust, that the exchange will not breach user consent, willfully or by accident. The problem stems from centralised systems, storing sensitive information in a single store. This project is utilising decentralisation to produce a trustless system, where no particpant has full control. Another benefit of a decentralised system is replicated storage, able to offline users and guarantee accessibility to all information. Second objective of this project is to design the expression of data subject consent. This expression will be used to compute which part of data is safe to store, and what should be rejected by the sytem. The implementation of this project utilises Hyperledger Fabric framework to build permissioned blockchain network. Fabric enables flexible configuration of the private network and Hyperledger environment provides many useful tools for deploying and maintaining the network, therefore a production-grade version of this design would have all neccessary tools for real world implementation.
 
     \newpage
     \tableofcontents
@@ -172,7 +188,7 @@
     To enforce the network policies on the participants, the system produces a record of every network member interaction. These records, containing information about the interaction and ordered based on the interaction timestamp, form a public ledger. Member interactions with the system are also called transactions. Only transactions, approved by required members are valid and recorded into a ledger. The ledger is replicated across multiple network members to prevent any unauthorised changes to the ledger - if a malicious member would attempt to change the record of system transactions, other network members would still be able to agree on the correct ledger version and deny the unauthorised change, based on their ledger replicas. This results in a system that consists of multiple independent members following the same rules and policies. This feature of the blockchain network is used for implementation of the data privacy algorithm presented in subsection \ref{subsec:design:exchange}.
     
     % decentralised data storage
-    One major advantage of a blockchain network over a traditional centralised information exchange approach is data storage. The proposed blockchain network does not store data on the ledger, nor does it communicate private information through transactions - meaning actual data intended for sharing is never recorded on the public ledger. Instead, when publishing new data to the system only the hash of data is made public. Actual private data is stored only by the data publisher and any members that have access to it. This model records evidence of published data and makes it public to everyone without revealing the contents of published data. By inspecting hashes of data in the ledger, it is possible to confirm private data was not tampered with after publishing. This and more scenarios will be analysed in section \ref{sec:scenario}. Another benefit of fragmented data storage is damage mitigation in case of a data breach or a malicious access. A member of the network will only store information that is either used or published by themselves - in most cases this will be a small subset of overall private data published to the system, which means a single instance of a data breach would compromise less private information than in the traditional centralised data exchange, where all private information is pooled to a single place.
+    One major advantage of a blockchain network over a traditional centralised information exchange approach is data storage. The proposed blockchain network does not store data on the ledger, nor does it communicate private information through transactions - meaning actual data intended for sharing is never recorded on the public ledger. Instead, when publishing new data to the system only the hash of data is made public. Actual private data is stored only by the data publisher and any members that have access to it. This model records evidence of published data and makes it public to everyone without revealing the contents of published data. By inspecting hashes of data in the ledger, it is possible to confirm private data was not tampered with after publishing. Another benefit of fragmented data storage is damage mitigation in case of a data breach or a malicious access. A member of the network will only store information that is either used or published by themselves - in most cases this will be a small subset of overall private data published to the system, which means a single instance of a data breach would compromise less private information than in the traditional centralised data exchange, where all private information is pooled to a single place.
     
     Cloud storage is a legitimate consideration for this system as well. First thing to decide when considering a data sharing system is the storing of information. Most standard way to store information is cloud-based services. Cloud storage requires minimal setup and no maintenance of on-premise databases, it also has practically unlimited space and the price for this service depends on the amount of information stored - meaning this solution is highly scalable. Given cloud storage would be only accessible via the blockchain, secure access logic will preserve personal information confidentiality. This design will not have a cloud storage, because data stored in cloud relies on the cloud service provider, which violates the decentralisation requirement. In case of cloud service outtage, shared data would be unavailable. In the end, this decision depends on the context and nature of shared information.
     
@@ -184,6 +200,7 @@
     Any participant of this system can interact with it via their node, however, some users interested in utilising this system may not be able to have an active node in the network. Data subject, for example, is a single person without a technical knowledge about blockchains. It would be a mistake to assume this person is able to connect their personal computing device to the network and be a part of the ledger. To solve this issue, each member of the system can deploy an application with correct connection profile, to act as a gateway between the user and the blockchain network. This additional software layer can invoke transactions, select what members to ask for transaction approval, receive blockchain events and query the public ledger. It may seem the application defeats the purpose of decentralisation, as each member just has a version of application, which only they control. However, the blockchain gateway is only an interface - the backend logic of the system is still dictated by the collective of all permissioned network nodes.
     
     \section{Implementation}
+    \label{sec:implementation}
     
     To implement this blockchain system for secure and consent-abiding private data sharing Hyperledger Fabric will be used - an "open source enterprise-grade permissioned distributed ledger technology platform"\cite{fabric}. This technology was established under the Linux Foundation, which has a reputable history of open source projects. Hyperledger Fabric is a permissioned blockchain system, meaning every member of the network knows each other. This is well suited for a proposed design, as all members - either data subjects or data publishers - should be approved anyway. Every member of the system has the same goal - provide useful information or use it for a good cause. Any action is recorded on a ledger, deterring any malicious members to take action and face consequences.
 
@@ -322,7 +339,7 @@ chaincodes:
 
     The chaincode in Hyperledger Fabric is installed to one channel only, meaning other channels in the system will have their own version of chaincode, with different endorsement policies and collections. Endorsement policies make the network transparent - a chaincode invoke is impossible without the knowledge of other endorsing members and the result of the invoke is agreed by all endorsers. Separate channels, however, give the ability to select a specific set of functions, collections and an endorsement policy based on the sensitivity and usage of shared data, as well as relations between channel organizations.
 
-    In this implementation, option \lstinline{endorsement} defines a policy - transactions have to be endorsed by two out of four existing organizations. One endorsing organization is not enough, as an organization could submit invalid chaincode invoke and endorse it itself - meaning user data could be published with consent constraints bypassed. Other limitation of endorsing organizations is a concern of data privacy. When endorsing a chaincode invoke, uncensored data is submited as an input and censored based on network consent constraints during chaincode execution. Endorsing node temporarily stores submitted input to emulate the chaincode and sign the output, during which time sensitive information can be read. To combat this problem, in production deployment channels should contain significantly more organizations compared to endorsers. For instance - in a channel with 30 organizations and an endorsing policy of three organizations, each one would have the ability to use this exploit once in every ten transactions - which would not yield any significant advantage over other organizations. Furthermore, there is a possibility to manually choose which organizations are chosen for endorsement, and require for \lstinline{Owners} organization to endorse every publishing transaction - this way exposing sensitive information to a trusted organization only. This will be further explained in section \ref{sec:future}.
+    In this implementation, option \lstinline{endorsement} defines a policy - transactions have to be endorsed by two out of four existing organizations. One endorsing organization is not enough, as an organization could submit invalid chaincode invoke and endorse it itself - meaning user data could be published with consent constraints bypassed. Other limitation of endorsing organizations is a concern of data privacy. When endorsing a chaincode invoke, uncensored data is submited as an input and censored based on network consent constraints during chaincode execution. Endorsing node temporarily stores submitted input to emulate the chaincode and sign the output, during which time sensitive information can be read. To combat this problem, in production deployment channels should contain significantly more organizations compared to endorsers. For instance - in a channel with 30 organizations and an endorsing policy of three organizations, each one would have the ability to use this exploit once in every ten transactions - which would not yield any significant advantage over other organizations. Furthermore, there is a possibility to manually choose which organizations are chosen for endorsement, and require for \lstinline{Owners} organization to endorse every publishing transaction - this way exposing sensitive information to a trusted organization only. This will be further explained in section \ref{subsec:future}.
 
     \subsection{Private collections}
     In listing \ref{lst:chaincode} option \lstinline{privateData} defines collections and organizations with access to them. In this network configuration, each of the three data publishing organizations have access to two or three private collections. \lstinline{owners.org} does not get any access, because it does not publish, nor read data from the system - only submit consent constraints. Private data published on the system will be written into one of three collections implemented as replicated data stores, separate from the public channel ledger, which are maintained only by organizations with access to that collection - one organization maintains three ledgers: one public ledger and two private collections, except \lstinline{org3.gov}, which has access to all collections. Even with limited access to collections, every organization can stil emulate write-only transactions, as these invokes do not rely on having access to private data. Endorsement of transactions involving writing and querying from a private collection is only done by organizations with sufficient access - meaning \lstinline{owners.org} can only endorse read invokes from the public ledger. Figure \ref{fig:collections} contains all network nodes with a channel ledger and accessible private collections. Arrows indicate communication - thicker arrows are public transactions of the channel, issued by the orderer for every change of the ledger. Remaining arrows represent gossip between peers with access to private collections. These updates are not public and does not use orderer as a verifier, since collection updates do not produce transactions. This way data remains uncompromised, but still agreed on by multiple nodes hosting collection data.
@@ -401,44 +418,84 @@ Authorization: Bearer user-token
 
 
     \section{Testing and evaluation}
-    This project has discovered many decision points when designing and implementing a trustless information exchange. Some decisions have altered performance of the system and can be measured and compared. Other design decisions are functional, creating new features improving privacy, reliability and user data ownership. This section will test functional features of the system, evaluate and compare performance metrics to other information exchanges. Scenario testing will be performed on the implementation of the system, assessing the degree of trust required, decentralisation benefits and transparency of the blockchain. Transaction speed evaluation will enable to compare the performance cost of user consent preservation algorithms to an information exchange.
+    This project has discovered many decision points when designing and implementing a trustless information exchange. Design decisions of this project are functional, creating new features improving privacy, reliability and user data ownership. This section will test functional features of the system via scenario testing, performed on the implementation of the system, assessing the degree of trust required, decentralisation benefits and transparency of the blockchain.
 
     \subsection{Scenario testing}
     \label{sec:scenario}
+    The system is implemented as described in section \ref{sec:implementation}. \lstinline{owners.org} is a trusted consent regulating organization, issuing identities for users consenting to share data. This organization does not have access to any system data. Other three organizations are data publishers and data users:
+
+    \begin{itemize}
+        \item \lstinline{org1.co} is a pharmacy company, which uses information to match supply with projected demand.
+        \item \lstinline{org2.ac} is a research company, calculating projections of medication demand.
+        \item \lstinline{org3.gov} is a government organization publishing health information and tracking how is medication bought.
+    \end{itemize}
+
+    All organizations have the same chaincode installed, with functions from appendix \ref{appendix:functions}. To invoke chaincode, Fablo REST endpoints will be called via Postman desktop application. Because each organization has their own application, requests can be sent to all four applications separately by addressing different ports of the same address for different organizations. Tables below use organization domain in format \lstinline{<username>@org3.gov} to represent every chaincode invokation by users from \lstinline{org3.gov}. \lstinline{Identity} shows which identity invoked \lstinline{Function}. \lstinline{Atom} and \lstinline{Collection} are two types of input for any function - some functions require no input, other functions require both atom (a query) and a collection name from the approved chaincode definition. Last column has a transient input, invisible in the generated transaction, if the function utilises this type of input. Otherwise a response of this invoke is displayed. Tables only contains transactions producing invokes - identity issuing is not recorded on the ledger, therefore these requests are not in the table.
     
-    % describe current state, referrence sec:implementation 
-    % - 3 orgs, owners
-    % - installed cc in append A
-    % - enrolled to the network with all necessary accs
-    
-    % complete transactions and observe the information of the system:
-    \begin{table}[ht]
-        \footnotesize
-        \begin{tabular}{ c|c|c|c|p{0.15\linewidth} }
-         identity & function & atom & collection & transient / response \\
-         \hline
-         admin@org3.gov & UpdateTable & T(disease,age,hospital) & C & user,cancer, 46,stmarys
+    \begin{table}[H]
+        \center
+        \scriptsize
+        \begin{tabular}{ c|c|c }
+            Identity & Function & Atom \\
+            \hline
+            admin@org3.gov & CreateTable & PATIENT(age,hospital,allergy) \\
+            user1@owners.org & SetConstraint & PATIENT(age,allergy) \\
+            user2@owners.org & SetConstraint & PATIENT(age,hospital) \\
+            \hline
+            admin@org2.ac & CreateTable & DEMAND(medicine,hospital,factor)  \\
+            user1@owners.org & SetConstraint & DEMAND(hospital)  \\
+            user2@owners.org & SetConstraint & DEMAND(medicine,hospital)  \\
+            \hline
+            admin@org1.co & CreateTable & ORDERS(product,price) \\
+            admin@org1.co & SetConstraint & ORDERS()
         \end{tabular}
+        \caption{Three tables and consent constraints for them generated}
+        \label{table:indices}
     \end{table}
 
-    % - what got published ?
-    % - how efficiently has the data been communicated ?
+    Three indices in table \ref{table:indices} are designed to model possible real world relations between a goverment and two commercial organizations. Both collections have a separate collection with the government organization, and the government has access to all private collections. This is a very simplified model, because the implementation of this project, while meeting requirements, has unsufficient consent semantics to simulate a more realistic scenario. Also, last row shows an empty constraint set by \lstinline{org1.co} user - organizations can use admin identities and store table information about themselves.
 
-    % - how much user had control over their data ?
-    % - what parties did we trust in the process ?
+    \begin{table}[H]
+        \center
+        \scriptsize
+        \begin{tabular}{ c|c|c|c|p{0.17\linewidth} }
+            Identity & Function & Atom & Coll & Transient \\
+            \hline
+            admin@org3.gov & UpdateTable & PATIENT(hospital,age,allergy) & C & user1@owners.org, general,25,pollen\newline user2@owners.org, royal,46,nut \\
+            admin@org2.ac & QueryTable & PATIENT(age,hospital,allergy) & C & user1@owners.org, 25,general,*** \newline user2@owners.org, ***,royal,nut \\
+            \hline
+            admin@org2.ac & UpdateTable & DEMAND(medicine,hospital,factor) & B & user1@owners.org, ,general,1.2 \newline user2@owners.org, claritin,royal,0.8 \\
+            admin@org2.ac & QueryTable & DEMAND(medicine,hospital,factor) & B & user1@owners.org, ,***,1.2 \newline user2@owners.org, claritine,***,0.8 \\
+            \hline
+            admin@org1.co & UpdateTable & ORDER(product,price) & A & admin@org1.co, claritine,9.6 \\
+            admin@org3.gov & QueryTable & ORDER(product,price) & A & admin@org1.co, claritine,9.6
+        \end{tabular}
+        \caption{Table updating and querying}
+        \label{table:updates}
+    \end{table}
 
-    % - try disconnecting one of peers
+    Table \ref{table:updates} contains updates and queries to observe resulting state. Information flow starts from collection \lstinline{C}, with \lstinline{org3.gov} publishing information about two patients. These patients have different consent constraints, therefore different information is saved for each user. For \lstinline{user1}, column \lstinline{PATIENT.allergy} was censored and discarded from the network. \lstinline{user2} had column \lstinline{PATIENT.age} censored. Observe, that former terms of the query are more prioritised when deciding what values to save and what to discard. For example, consent of \lstinline{user2} is \lstinline{PATIENT(age,hospital)}, and the chaincode will update only the first term specified by the update atom. In the first row of table \ref{table:updates} update atom is \lstinline{PATIENT(hospital,age,allergy)} therefore \lstinline{user2} has a value of hospital, not age. This feature lets users of the system decide which information is more valuable and should be saved if possible. Row 3 of table \ref{table:updates} has an update query, where \lstinline{user1} input is not full. Update query has three columns, but the csv format only contains two. System allows this to make data uploading more simple and usable. Last table update in row 5 showcases the fact that users can publish information with themselves as a data subject. For this reason, the empty constraint was created in table \ref{table:indices}. This value, however, will only be saved until the next value related to this identity is put on top of the old value. Therefore, for \lstinline{org3.gov} to receive all orders carried out by \lstinline{org1.co}, they must save new values to an off-chain database, which would every change, in result constructing a desired timetable.
 
-    \subsection{Evaluation}
+    After these invokes, two users now have their personal information shared and accessible by three organizations. Constraints were correctly used to decide which information can different collections access, based on organizations in that collection. For example, \lstinline{user1} has allowed to publish hospital information to table \lstinline{PATIENT}, but not table \lstinline{DEMAND}, because \lstinline{user1} wishes to obscure their current hospital from \lstinline{org1.co}, not \lstinline{org2.ac}. Therefore, it is very important to reasonably create collections - possibly based on the trust of organizations in that collection. Government and research organizations may have more trust and tables in that collection could have less consent constraints.
+
+    This scenario also shows that users have full control of personal data that is yet to be published. In fact, organizations are not able to publish personal information without users first setting a constraint for the specific table. This system, however, does not delete personal data after revoking consent. In the future, this functionality can be added, as showed with function \lstinline{PurgeTable(String, String)}. To measure how trustless this implementation is, we should think about all the system actors and evaluate whether they need to be trusted for the system to correctly operate and for personal information to stay private. To set constraints, user has to trust the gateway application of \lstinline{owners.org}, because the invoke is done through it. Set constraints can be independently checked, since they are public and any member can check wether correct constraint has been set. Other organizations are not required to be trusted at all. The system will not operate without any organizations for obvious reasons, but any organization willing to participate in the system will be forced to follow the blockchain protocol. By assuming organizations are benfiting by participating in this system, no organization has enough rights to compromise the network alone. To conclude, partial trust is required from one organization out of all blockchain participants. However, as discussed in section \ref{sec:literature}, information exchanges with data subject consent need a personal data authority to represent the users. This authority, however only approves valid transactions, it does not have any access to system data, therefore decentralisation is unaffected.
+
+    Last test to perfrom is how well the decentralised system handles a node failure. After stopping \lstinline{org1.co}, network operates corectly and is able to call all functions. After disconnecting one more organization, the system would not be able to operate anymore due to security reasons - with one organization online transactions cannot be signed by enough organizations. This lower limit can be changed if more organizations are on the network. A system, consisting of three organizations can handle one disconnect, which is evidence of a decentralised replicated network. More participants would result in even more resilient network.
 
     \subsection{Future considerations}
-    % not enough time for this - what took longer to do?
-    \label{sec:future}
+    \label{subsec:future}
+    This subsection will consider some features yet to be implemented in this project. Gantt chart in figure \ref{fig:gantt} includes all planned implementation features.
+    
+    \begin{figure}[H]
+        \includegraphics[width=\textwidth]{gantt.png}
+        \caption{Gantt chart showing planned schedule and actual progress}
+        \label{fig:gantt}
+    \end{figure}
 
-
+    Blue boxes indicate the task has been done. Reason for unimplemented features was longer than planned environment setup - Hyperledger Fabric environment is very young, and rapid development resulted in convoluted and occasionally contradicting technical documentation. Because this task is the first one and is essential to start other tasks, the delay affected all planned tasks - leaving no remaining time for network extension. This feature was designed to handle expansion of the network - addition of new channels to segment information, new organizations as new participants of the channel and creating/updating collections to include new organizations. Other unimplemented feature is a custom application to model convenient and independent user interface for data subjects. However, based on the scope of this project, higher priority tasks have been targeted.
 
     \section{Conclusion}
-
+    This project solved the problem of trust and enabled full user control of their personal data, utilising Hyperledger Fabric framework to implement a permissioned blockchain. Deccentralised architecture distributes network management responsibility to all members, therefore no system participant holds full control of it. By reviewing related literature, it was decided to include a personal data protecting authority to represent data subjects on the network. This gives special access to a trusted authority, in case some information needs to be purged from the network, however the rest of network members do not require trust to operate the system. While this project is relatively simple and the implementation proposed is not suitable for production deployment, it shows that both trustless and private information exchanges are possible and the implementation is very flexible - the system can be tuned to different relationships between participants by creating multiple collections and defining specific endorsement policies. Furthermore, chaincodes can be installed on different channels, defining individual access logic, allowing to adapt this system for other privacy settings.
 
     
     
@@ -449,7 +506,263 @@ Authorization: Bearer user-token
 
     \newpage
     \appendix
+
     \section{Appendix: Chaincode functions}
     \label{appendix:functions}
+    \begin{lstlisting}[style=java, language=java]
+/*
+ * SPDX-License-Identifier: Apache-2.0
+ */
+package main.contract;
+
+@Contract(info = @Info(
+    title = "Private data contract",
+    description = "Keeps track of information without losing privacy",
+    version = "1.0",
+    license = @License(
+        name = "SPDX-License-Identifier: Apache-2.0"),
+        contact =  @Contact(
+            email = "am26g21@soton.ac.uk",
+            name = "am26g21")
+))
+
+@Log
+@NoArgsConstructor
+@Default
+public class PrivateDataContract implements ContractInterface {
+
+    public static final String OWNERS = "OwnersMSP";
+    public static final String CQ_KEY = "CQ";
+
+    public static final String TABLE_KEY = "TABLE";
+
+    @Transaction(intent = TYPE.SUBMIT)
+    public String CreateTable(Context ctx, String index) {
+
+        var stub = ctx.getStub();
+        var tableAtom = new Atom(index);
+        var tableKey = stub.createCompositeKey(TABLE_KEY, tableAtom.getName());
+
+        var buffer = stub.getState(tableKey.toString());
+        if(buffer != null && buffer.length > 0) {
+            throw new ChaincodeError("Table already exists");
+        }
+
+        stub.putState(tableKey.toString(), tableAtom.toBytes());
+        return "Table created successfully";
+    }
+
+    @Transaction(intent = TYPE.SUBMIT)
+    public String SetConstraint(Context ctx, String cq) {
+
+        if(!ctx.getClientIdentity().getMSPID().equals(OWNERS)) {
+            throw new ChaincodeError("Only a member of " + OWNERS + " can modify constraints");
+        }
+
+        var stub = ctx.getStub();
+        var user = getUser(ctx);
+        var cqAtom = new ConstraintQuery(cq, user);
+
+        if(!getTableMap(ctx).containsKey(cqAtom.getName())) {
+            throw new ChaincodeError("Table " + cqAtom.getName() + " does not exist");
+        }
+
+        var key = stub.createCompositeKey(CQ_KEY, cqAtom.getName(), user);
+        stub.putState(key.toString(), cqAtom.toBytes());
+        return "Constraint set successfully";
+    }
+
+    @Transaction(intent = TYPE.SUBMIT)
+    public String UpdateTable(Context ctx, String collection, String query) {
+
+        var stub = ctx.getStub();
+        var queryAtom = new Atom(query);
+        var index = getTableMap(ctx).get(queryAtom.getName());
+
+        if(index == null) {
+            throw new ChaincodeError("Table " + queryAtom.getName() + " does not exist");
+        }
+
+        var key = stub.createCompositeKey(TABLE_KEY, queryAtom.getName());
+        var state = stub.getPrivateData(collection, key.toString());
+        if(state == null || state.length == 0) {
+            state = index.toBytes();
+        }
+
+
+        var data = stub.getTransient().get("data");
+        var cqs = getTableConstraints(ctx, queryAtom.getName());
+
+        try {
+            var table = new Table(state);
+            table.update(queryAtom, data, cqs);
+
+            log.info("Updated table: " + table.getCsv());
+
+            // add private data to publisher's private collection
+            stub.putPrivateData(collection, key.toString(), table.toPrivateBytes());
+
+        } catch (IOException e) {
+            throw new ChaincodeError("Corrupt table data");
+        }
+        return "Table updated successfully";
+    }
+
+    @Transaction(intent = TYPE.EVALUATE)
+    public String QueryTable(Context ctx, String collection, String query) {
+
+        var stub = ctx.getStub();
+        var queryAtom = new Atom(query);
+        var key = stub.createCompositeKey(TABLE_KEY, queryAtom.getName());
+
+        byte[] state = stub.getPrivateData(collection, key.toString());
+
+        if(state == null || state.length == 0) {
+            throw new ChaincodeError("Table " + queryAtom.getName() + " in " + collection + " not found");
+        }
+
+        try {
+
+            var table = new Table(state);
+            return table.query(queryAtom);
+
+        } catch (IOException e) {
+            throw new ChaincodeError("Corrupt table data");
+        }
+    }
+
+    @Transaction(intent = TYPE.SUBMIT)
+    public void PurgeTable(Context ctx, String collection, String tableName) {
+
+        var stub = ctx.getStub();
+        var key = stub.createCompositeKey(TABLE_KEY, tableName);
+
+        try {
+            stub.purgePrivateData(collection, key.toString());
+        } catch (Exception ignored) {}
+    }
+
+    @Transaction(intent = TYPE.EVALUATE)
+    public String GetTableHash(Context ctx, String collection, String tableName) {
+
+        var stub = ctx.getStub();
+        var key = stub.createCompositeKey(TABLE_KEY, tableName);
+
+        var hash = stub.getPrivateDataHash(collection, key.toString());
+        return Hex.encodeHexString(hash);
+    }
+
+    @Transaction(intent = TYPE.EVALUATE)
+    public String GetTableConstraints(Context ctx, String tableName) {
+        return getTableConstraints(ctx, tableName).toString();
+    }
+
+    @Transaction(intent = TYPE.EVALUATE)
+    public String GetMyConstraints(Context ctx) {
+        var cqs = getUserConstraints(ctx, getUser(ctx));
+        return cqs.stream().map(Atom::toString)
+            .collect(Collectors.joining("; "));
+    }
+
+    @Transaction(intent = TYPE.EVALUATE)
+    public String GetAllTables(Context ctx) {
+        var tables = getTableMap(ctx).values();
+        return tables.stream().map(Atom::toString)
+            .collect(Collectors.joining("; "));
+    }
+
+    @Transaction(intent = TYPE.EVALUATE)
+    public String GetTableState(Context ctx, String collection, String tableName) {
+
+        var stub = ctx.getStub();
+        var key = stub.createCompositeKey(TABLE_KEY, tableName);
+
+        var hash = stub.getPrivateData(collection, key.toString());
+        return new String(hash, UTF_8);
+    }
+
+
+
+    private String getUser(Context ctx) {
+        var clientId = ctx.getClientIdentity().getId();
+        var match = Pattern.compile("(?<=x509::CN=)(.+?)(?=,)").matcher(clientId);
+        if(!match.find()) {
+            throw new ChaincodeError("No client identity found");
+        }
+        return match.group();
+    }
+
+    private Map<String, Atom> getTableMap(Context ctx) {
+        var stub = ctx.getStub();
+        var tables = new HashMap<String, Atom>();
+
+        stub.getStateByPartialCompositeKey(TABLE_KEY).forEach(keyValue -> {
+
+            var tableName = getNthKey(ctx, keyValue.getKey(), 0);
+            tables.put(tableName, new Atom(keyValue.getValue()));
+        });
+        return tables;
+    }
+
+    private Map<String, ConstraintQuery> getTableConstraints(Context ctx, String tableName) {
+        var stub = ctx.getStub();
+        var cqs = new HashMap<String, ConstraintQuery>();
+
+        stub.getStateByPartialCompositeKey(CQ_KEY, tableName).forEach(keyValue -> {
+
+            var user = getNthKey(ctx, keyValue.getKey(), 1);
+            cqs.put(user, new ConstraintQuery(keyValue.getValue()));
+        });
+        return cqs;
+    }
+
+    private Set<ConstraintQuery> getUserConstraints(Context ctx, String user) {
+        var stub = ctx.getStub();
+        var cqs = new HashSet<ConstraintQuery>();
+
+        stub.getStateByPartialCompositeKey(CQ_KEY).forEach(keyValue -> {
+
+            var u = getNthKey(ctx, keyValue.getKey(), 1);
+            log.info(keyValue.getKey() + ", user " + u);
+            if(!u.equals(user)) return;
+
+            cqs.add(new ConstraintQuery(keyValue.getValue()));
+        });
+        return cqs;
+    }
+
+    private String getNthKey(Context ctx, String key, int n) {
+        var keys = ctx.getStub().splitCompositeKey(key).getAttributes();
+        if(keys.isEmpty()) return "";
+        if(keys.size() <= n || n < 0) return "";
+        return keys.get(n);
+    }
+
+    private void verifyClientIsTheSameOrg(final Context ctx) {
+
+        String clientMSPID = ctx.getClientIdentity().getMSPID();
+        String peerMSPID = ctx.getStub().getMspId();
+
+        if (!peerMSPID.equals(clientMSPID)) {
+            var errorMessage = String.format("Client from org %s is not authorized to read or write private data from an org %s peer", clientMSPID, peerMSPID);
+            throw new ChaincodeError(errorMessage);
+        }
+    }
+
+}
+    \end{lstlisting}
+
+    \section{Appendix: Project brief}
+    \subsection*{Problem}
+    The market for digital user information is growing, as companies use it to make the internet experience more personal to each user. Digital data is also useful to train various machine learning programs, and medical information helps doctors make evidence-based decisions. However, current methods for users to control the use of their data are very limited, most of them being "opt-in/out" choices. This, combined with the fact that data providers are relying on agreements written in natural language when sharing user information, makes the option of sharing user information unappealing.
+
+
+    \subsection*{Goals}
+    The objective of this project is to solve problems related to user information usage, by adding a logic layer before accessing the data. The logic layer, in a form of a smart contract hosted in a distributed ledger, would store user's consent constraints on their private data. The smart contract would accept queries of the data, apply consent constraints and return compliant results, without giving away protected user information. The distributed ledger would ensure traceable usage of data and immutable global consent constraints.
+
+
+    \subsection*{Scope}
+    The distributed ledger storing consent constraints and information access logic will be implemented using Hyperledger Fabric. Companies interacting with the user data would form a private network, where consent constraints would be used for every query done by a member of the network. Smart contracts would implement constraints and re-write queries as described in a paper by G. Konstantinidis, J. Holt, and A. Chapman. "Enabling Personal Consent in Databases". Interface for data providers to register a user information database and user consent constraints is also in the scope of this project.
+
 
 \end{document}

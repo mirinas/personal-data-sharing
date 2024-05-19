@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.5)  29 APR 2024 18:01
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.5)  30 APR 2024 15:43
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -188,20 +188,20 @@ Package graphics Info: Driver file: pdftex.def on input line 107.
 ) (./report.aux)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 79.
+LaTeX Font Info:    ... okay on input line 79.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 79.
+LaTeX Font Info:    ... okay on input line 79.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 79.
+LaTeX Font Info:    ... okay on input line 79.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 79.
+LaTeX Font Info:    ... okay on input line 79.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 79.
+LaTeX Font Info:    ... okay on input line 79.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 79.
+LaTeX Font Info:    ... okay on input line 79.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 79.
+LaTeX Font Info:    ... okay on input line 79.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
@@ -244,84 +244,130 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 <./img/constraints.png, id=31, 915.42pt x 241.50224pt>
 File: ./img/constraints.png Graphic file (type png)
 <use ./img/constraints.png>
-Package pdftex.def Info: ./img/constraints.png  used on input line 160.
+Package pdftex.def Info: ./img/constraints.png  used on input line 176.
 (pdftex.def)             Requested size: 390.0pt x 102.88582pt.
  [8] [9 <./img/constraints.png>] [10] [11] [12]
-LaTeX Font Info:    Trying to load font information for OT1+zi4 on input line 192.
+LaTeX Font Info:    Trying to load font information for OT1+zi4 on input line 209.
  (c:/texlive/2023/texmf-dist/tex/latex/inconsolata/ot1zi4.fd
 File: ot1zi4.fd 2018/01/14 OT1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `OT1/zi4/m/n' will be
-(Font)              scaled to size 12.0pt on input line 192.
+(Font)              scaled to size 12.0pt on input line 209.
  [13{c:/texlive/2023/texmf-dist/fonts/enc/dvips/inconsolata/i4-ot1-0.enc}]
 LaTeX Font Info:    Font shape `OT1/zi4/m/n' will be
-(Font)              scaled to size 10.0pt on input line 199.
+(Font)              scaled to size 10.0pt on input line 216.
 LaTeX Font Info:    Font shape `OT1/zi4/b/n' will be
-(Font)              scaled to size 10.0pt on input line 201.
+(Font)              scaled to size 10.0pt on input line 218.
  [14] [15]
 <./img/network.png, id=61, 1150.2975pt x 387.69844pt>
 File: ./img/network.png Graphic file (type png)
 <use ./img/network.png>
-Package pdftex.def Info: ./img/network.png  used on input line 276.
+Package pdftex.def Info: ./img/network.png  used on input line 293.
 (pdftex.def)             Requested size: 390.0pt x 131.44302pt.
  [16 <./img/network.png>]
-LaTeX Font Info:    Trying to load font information for TS1+zi4 on input line 305.
+LaTeX Font Info:    Trying to load font information for TS1+zi4 on input line 322.
  (c:/texlive/2023/texmf-dist/tex/latex/inconsolata/ts1zi4.fd
 File: ts1zi4.fd 2018/01/14 TS1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `TS1/zi4/m/n' will be
-(Font)              scaled to size 10.0pt on input line 305.
+(Font)              scaled to size 10.0pt on input line 322.
  [17{c:/texlive/2023/texmf-dist/fonts/enc/dvips/inconsolata/i4-ts1.enc}] [18]
 <./img/collections.png, id=74, 600.8046pt x 472.4049pt>
 File: ./img/collections.png Graphic file (type png)
 <use ./img/collections.png>
-Package pdftex.def Info: ./img/collections.png  used on input line 331.
+Package pdftex.def Info: ./img/collections.png  used on input line 348.
 (pdftex.def)             Requested size: 390.0pt x 306.66309pt.
  [19] [20 <./img/collections.png>]
 <./img/worldstate.png, id=82, 318.4698pt x 291.2481pt>
 File: ./img/worldstate.png Graphic file (type png)
 <use ./img/worldstate.png>
-Package pdftex.def Info: ./img/worldstate.png  used on input line 342.
+Package pdftex.def Info: ./img/worldstate.png  used on input line 359.
 (pdftex.def)             Requested size: 390.0pt x 356.66426pt.
- [21] [22{c:/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc} <./img/worldstate.png>] [23] [24] [25]
+ [21] [22{c:/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc} <./img/worldstate.png>] [23] [24] [25] [26]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 417.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 417.
+(Font)              <5> on input line 438.
 
-Underfull \hbox (badness 10000) in paragraph at lines 418--419
-[]\OT1/cmr/m/n/10 transient /
+Overfull \hbox (1.58086pt too wide) in paragraph at lines 464--465
+[]\OT1/cmr/m/n/8 user1@owners.org,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 420--421
-[]\OT1/cmr/m/n/10 user,cancer,
+Overfull \hbox (1.58086pt too wide) in paragraph at lines 464--465
+\OT1/cmr/m/n/8 user2@owners.org,
  []
 
-[26] (./report.bbl [27]
+
+Overfull \hbox (1.58086pt too wide) in paragraph at lines 465--466
+[]\OT1/cmr/m/n/8 user1@owners.org,
+ []
+
+
+Overfull \hbox (1.58086pt too wide) in paragraph at lines 465--466
+\OT1/cmr/m/n/8 user2@owners.org,
+ []
+
+
+Overfull \hbox (1.58086pt too wide) in paragraph at lines 467--468
+[]\OT1/cmr/m/n/8 user1@owners.org,
+ []
+
+
+Overfull \hbox (1.58086pt too wide) in paragraph at lines 467--468
+\OT1/cmr/m/n/8 user2@owners.org,
+ []
+
+
+Overfull \hbox (1.58086pt too wide) in paragraph at lines 468--469
+[]\OT1/cmr/m/n/8 user1@owners.org,
+ []
+
+
+Overfull \hbox (1.58086pt too wide) in paragraph at lines 468--469
+\OT1/cmr/m/n/8 user2@owners.org,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 470--471
+[]\OT1/cmr/m/n/8 admin@org1.co,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 471--472
+[]\OT1/cmr/m/n/8 admin@org1.co,
+ []
+
+[27] [28] [29]
+<./img/gantt.png, id=114, 1029.8475pt x 588.39825pt>
+File: ./img/gantt.png Graphic file (type png)
+<use ./img/gantt.png>
+Package pdftex.def Info: ./img/gantt.png  used on input line 490.
+(pdftex.def)             Requested size: 390.0pt x 222.82153pt.
+ [30 <./img/gantt.png>] [31] (./report.bbl [32]
 Underfull \hbox (badness 10000) in paragraph at lines 35--36
 []\OT1/cmr/m/n/12 N. Frunza, ``Blockchain ex-plorer.'' $\OT1/zi4/m/n/12 https : / / github . com /
  []
 
-) [28] [29] (./report.aux)
+) [33] (c:/texlive/2023/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2023/02/27 1.9 listings language file
+) [34] [35] [36] [37] [38] [39] [40] [41] (./report.aux)
  ***********
 LaTeX2e <2023-11-01>
 L3 programming layer <2020/03/25>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 7048 strings out of 474267
- 114955 string characters out of 5751465
- 2098558 words of memory out of 5000000
- 29156 multiletter control sequences out of 15000+600000
+ 7278 strings out of 474267
+ 118044 string characters out of 5751465
+ 2202558 words of memory out of 5000000
+ 29383 multiletter control sequences out of 15000+600000
  564832 words of font info for 59 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 65i,10n,79p,1875b,1744s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/2023/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4b.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on report.pdf (30 pages, 434205 bytes).
+ 65i,10n,79p,1905b,1822s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/texlive/2023/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4b.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
+Output written on report.pdf (42 pages, 534982 bytes).
 PDF statistics:
- 155 PDF objects out of 1000 (max. 8388607)
- 97 compressed objects within 1 object stream
+ 198 PDF objects out of 1000 (max. 8388607)
+ 125 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 26 words of extra memory for PDF output out of 10000 (max. 10000000)
 
