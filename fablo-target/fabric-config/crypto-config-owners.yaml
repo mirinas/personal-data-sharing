@@ -1,9 +1,0 @@
-PeerOrgs:
-  - Name: Owners
-    Domain: owners.org
-    Specs:
-      - Hostname: orderer0.authority
-    Template:
-      Count: 1
-    Users:
-      Count: 1
